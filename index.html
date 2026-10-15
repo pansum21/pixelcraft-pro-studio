@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelCraft Studio — Next-Gen Design & Media Web Tools</title>
+  <meta name="description" content="Next-generation browser studio for designers and developers. Color Palette Harmonies, WCAG Contrast Engine, SVG Vector Forge, Image Resizer, and CSS Gradient Studio.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+  <!-- Google Identity Services (GIS) SDK -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+  <!-- Dynamic Cursor Spotlight Glow -->
+  <div id="cursor-glow" class="cursor-glow"></div>
+
+  <!-- Ambient Cinematic Background Glows -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <div class="tech-grid-pattern"></div>
+
+  <!-- Master Application Layout -->
+  <div class="app-layout">
+
+    <!-- ==========================================
+         LEFT VERTICAL SIDEBAR: TOOLS 01 - 10
+         ========================================== -->
+    <aside class="app-sidebar" aria-label="Tools Navigation">
+      <div class="sidebar-header">
+        <a href="#palette" class="sidebar-brand-link">
+          <div class="brand-icon-halo">
+            <div class="brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.28 1.28L3 12l5.8 1.9a2 2 0 0 1 1.28 1.28L12 21l1.9-5.8a2 2 0 0 1 1.28-1.28L21 12l-5.8-1.9a2 2 0 0 1-1.28-1.28z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sidebar-brand-text">
+            <span class="sidebar-suite-title">PixelCraft Suite</span>
+            <span class="sidebar-status-tag"><span class="pulse-dot"></span>v5.3 PRO Live</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-section-divider">
+        <span class="sidebar-section-label">STUDIO TOOLS (1 - 10)</span>
+      </div>
+
+      <!-- Vertical 1 to 10 Navigation -->
+      <nav class="tool-nav sidebar-nav" role="tablist" aria-label="Tool Navigation">
+        <button class="nav-tab-btn active" data-tool="palette" role="tab" aria-selected="true">
+          <span class="tool-seq-num">01</span>
+          <span class="tab-icon">🎨</span>
+          <span class="tab-label">Palette Studio</span>
+          <kbd class="nav-shortcut-key">1</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="contrast" role="tab" aria-selected="false">
+          <span class="tool-seq-num">02</span>
+          <span class="tab-icon">⚡</span>
+          <span class="tab-label">Contrast Inspector</span>
+          <kbd class="nav-shortcut-key">2</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="extractor" role="tab" aria-selected="false">
+          <span class="tool-seq-num">03</span>
+          <span class="tab-icon">📸</span>
+          <span class="tab-label">Palette Extractor</span>
+          <kbd class="nav-shortcut-key">3</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="svg" role="tab" aria-selected="false">
+          <span class="tool-seq-num">04</span>
+          <span class="tab-icon">📐</span>
+          <span class="tab-label">SVG Vector Forge</span>
+          <kbd class="nav-shortcut-key">4</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="wave" role="tab" aria-selected="false">
+          <span class="tool-seq-num">05</span>
+          <span class="tab-icon">🌊</span>
+          <span class="tab-label">Wave & Dividers</span>
+          <kbd class="nav-shortcut-key">5</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="shadow" role="tab" aria-selected="false">
+          <span class="tool-seq-num">06</span>
+          <span class="tab-icon">🔲</span>
+          <span class="tab-label">Layered Shadows</span>
+          <kbd class="nav-shortcut-key">6</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="gradient" role="tab" aria-selected="false">
+          <span class="tool-seq-num">07</span>
+          <span class="tab-icon">🔮</span>
+          <span class="tab-label">Gradients & Glass</span>
+          <kbd class="nav-shortcut-key">7</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="codecard" role="tab" aria-selected="false">
+          <span class="tool-seq-num">08</span>
+          <span class="tab-icon">💻</span>
+          <span class="tab-label">Code Beautifier</span>
+          <kbd class="nav-shortcut-key">8</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="image" role="tab" aria-selected="false">
+          <span class="tool-seq-num">09</span>
+          <span class="tab-icon">🖼️</span>
+          <span class="tab-label">Image Resizer</span>
+          <kbd class="nav-shortcut-key">9</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="favicon" role="tab" aria-selected="false">
+          <span class="tool-seq-num">10</span>
+          <span class="tab-icon">🏷️</span>
+          <span class="tab-label">Favicon Studio</span>
+          <kbd class="nav-shortcut-key">0</kbd>
+        </button>
+
+        <button class="nav-tab-btn" data-tool="sandbox" role="tab" aria-selected="false">
+          <span class="tool-seq-num">11</span>
+          <span class="tab-icon">🧪</span>
+          <span class="tab-label">Component Sandbox</span>
+          <kbd class="nav-shortcut-key">S</kbd>
+        </button>
+      </nav>
+
+      <div class="sidebar-section-divider" style="margin-top:0.85rem;">
+        <span class="sidebar-section-label">STUDIO VAULT & TOKENS</span>
+      </div>
+
+      <div class="sidebar-secondary-actions">
+        <button id="sidebar-vault-btn" class="sidebar-action-pill-btn" title="Saved Presets & Favorites Vault">
+          <span class="action-icon">⭐</span>
+          <span class="tab-label">Presets Vault</span>
+        </button>
+        <button id="sidebar-tokens-btn" class="sidebar-action-pill-btn" title="Export Multi-Platform Design Tokens">
+          <span class="action-icon">📦</span>
+          <span class="tab-label">Design Tokens</span>
+        </button>
+        <button id="pwa-install-btn" class="sidebar-action-pill-btn" title="Install Desktop App (PWA)" style="display:none;">
+          <span class="action-icon">💻</span>
+          <span class="tab-label">Install App</span>
+        </button>
+      </div>
+
+      <div class="sidebar-section-divider" style="margin-top:0.85rem;">
+        <span class="sidebar-section-label">GOOGLE CLOUD SYNC</span>
+      </div>
+
+      <div class="sidebar-auth-block">
+        <button id="sidebar-google-login-btn" class="sidebar-google-signin-btn" title="Sign In with Google">
+          <svg class="google-g-icon" width="18" height="18" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <span class="sidebar-auth-btn-text">Sign in with Google</span>
+        </button>
+
+        <div id="sidebar-user-card" class="sidebar-logged-user-card" style="display:none;">
+          <img id="sidebar-user-avatar-img" class="sidebar-avatar-circle" src="" alt="Avatar">
+          <div class="sidebar-user-info-col">
+            <span id="sidebar-user-name" class="sidebar-user-name-text">Designer Pro</span>
+            <span class="sidebar-user-status-pill">🟢 Cloud Synced</span>
+          </div>
+          <button id="sidebar-signout-btn" class="sidebar-signout-icon-btn" title="Sign Out of Google">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom-controls">
+        <button id="sidebar-collapse-btn" class="sidebar-collapse-btn" title="Collapse Sidebar (Zen Mode)">
+          <svg class="collapse-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span class="collapse-label">Zen Mode</span>
+        </button>
+      </div>
+
+      <div class="sidebar-bottom-badge">
+        <span class="badge-icon">⚡</span>
+        <div class="badge-text">
+          <strong>100% In-Browser</strong>
+          <small>Zero-upload privacy engine</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         RIGHT WORKSPACE: HEADER + MAIN APPS
+         ========================================== -->
+    <div class="app-main-area">
+
+      <!-- Top Header with Brand in Top Right, Chunky Switch & Elongated Search -->
+      <header class="app-header">
+        <div class="header-container">
+          
+          <!-- Left: Active Workspace Breadcrumb -->
+          <div class="header-breadcrumb-wrap">
+            <span class="active-crumb-sub">ACTIVE WORKSPACE</span>
+            <div id="active-tool-indicator" class="active-crumb-title">Color Palette Studio</div>
+          </div>
+
+          <!-- Right Header Cluster (Brand + Chunky Switch + Search) -->
+          <div class="header-right-cluster">
+            
+            <div class="header-cluster-top">
+              <!-- Big Brand Title in Top Right -->
+              <div class="top-right-brand">
+                <span class="brand-title-big">PixelCraft <span class="brand-badge-pro-big">PRO</span></span>
+              </div>
+
+              <!-- Quick Action Pills: Vault & Tokens -->
+              <div class="header-quick-pills">
+                <button id="header-vault-btn" class="glass-pill-btn" title="Open Saved Favorites & Vault">⭐ Vault</button>
+                <button id="header-tokens-btn" class="glass-pill-btn" title="Export Multi-Platform Design Tokens">📦 Tokens</button>
+              </div>
+
+              <!-- Tactile Sound FX Toggle -->
+              <button id="sound-toggle-btn" class="glass-icon-btn sound-toggle-btn active" title="Toggle Tactile Audio Sounds (Web Audio)" aria-label="Toggle Sound Effects">
+                <span class="sound-icon">🔊</span>
+              </button>
+
+              <!-- Google Sign-In Glass Button / User Profile Widget -->
+              <div class="auth-header-slot">
+                <button id="google-login-btn" class="google-signin-glass-btn prominent-signin-btn" title="Sign In with Google">
+                  <svg class="google-g-icon" width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                  </svg>
+                  <span class="btn-text">Sign in with Google</span>
+                </button>
+
+                <div id="user-profile-widget" class="user-profile-chip-wrap" style="display:none;">
+                  <button id="user-profile-btn" class="user-avatar-btn" aria-haspopup="true" aria-expanded="false" title="Account & Cloud Sync">
+                    <img id="user-avatar-img" class="user-avatar-circle" src="" alt="Avatar">
+                    <span id="user-display-name" class="user-name-label"></span>
+                    <span class="user-pro-dot" title="Cloud Sync Active"></span>
+                  </button>
+
+                  <div id="user-profile-dropdown" class="user-dropdown-glass-menu hidden">
+                    <div class="dropdown-user-header">
+                      <img id="dropdown-avatar-img" class="dropdown-avatar-circle" src="" alt="Avatar">
+                      <div class="dropdown-user-info">
+                        <strong id="dropdown-user-name" class="dropdown-user-name"></strong>
+                        <span id="dropdown-user-email" class="dropdown-user-email"></span>
+                      </div>
+                    </div>
+
+                    <div class="dropdown-sync-status">
+                      <span class="sync-dot-live"></span>
+                      <span class="sync-status-text">Cloud Sync: Active</span>
+                      <span class="sync-badge-pill">PRO</span>
+                    </div>
+
+                    <div class="dropdown-divider"></div>
+
+                    <div class="dropdown-menu-list">
+                      <button id="profile-open-vault-btn" class="dropdown-menu-item">
+                        <span>⭐ Presets Vault</span>
+                        <span class="menu-item-count">Synced</span>
+                      </button>
+                      <button id="profile-open-tokens-btn" class="dropdown-menu-item">
+                        <span>📦 Design Tokens</span>
+                      </button>
+                    </div>
+
+                    <div class="dropdown-divider"></div>
+
+                    <button id="auth-signout-btn" class="dropdown-signout-btn">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chunky Theme Toggle Switch (मोटा स्विच: Left = Light, Right = Dark) directly above search bar -->
+              <div class="chunky-theme-switch-wrap" title="Toggle Light / Dark Mode">
+                <span class="switch-side-label light-label" id="label-light">☀ Light</span>
+                <button id="theme-toggle-btn" class="chunky-switch-btn" role="switch" aria-checked="true" aria-label="Toggle Light and Dark Mode">
+                  <span class="switch-track">
+                    <span class="switch-thumb"></span>
+                  </span>
+                </button>
+                <span class="switch-side-label dark-label" id="label-dark">☾ Dark</span>
+              </div>
+            </div>
+
+            <!-- Elongated Search Bar Button (लंबा सर्च बार बटन) -->
+            <button id="command-menu-trigger-btn" class="command-hud-btn elongated-search-btn" title="Open Command Menu (Ctrl+K)">
+              <div class="search-btn-left">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span class="hud-label">Search tools, actions, shortcuts...</span>
+              </div>
+              <kbd class="hud-kbd">⌘K / Ctrl+K</kbd>
+            </button>
+
+          </div>
+
+        </div>
+      </header>
+
+      <!-- Main Viewports -->
+      <main class="app-main">
+
+    <!-- ==========================================
+         TOOL 1: COLOR PALETTE GENERATOR
+         ========================================== -->
+    <section id="tool-palette" class="tool-view active">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">COLOR ARCHITECTURE</span>
+          <h1 class="gradient-headline">Harmonic Palette Generator</h1>
+          <p class="section-subtitle">Press <kbd class="glow-kbd">Spacebar</kbd> anytime to generate fresh color harmonies. Click any lock to freeze favorite tones.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <div class="slot-count-stepper" title="Adjust color slots (3 to 7)">
+            <button id="palette-remove-slot-btn" class="stepper-btn" title="Remove slot">−</button>
+            <span class="stepper-label">Slots</span>
+            <button id="palette-add-slot-btn" class="stepper-btn" title="Add slot">+</button>
+          </div>
+
+          <div class="select-glow-wrap">
+            <select id="palette-harmony-select" class="select-control-modern" aria-label="Harmony Engine">
+              <option value="random">🎲 Random Aesthetic</option>
+              <option value="complementary">⚖️ Complementary</option>
+              <option value="analogous">🌈 Analogous</option>
+              <option value="triadic">🔺 Triadic</option>
+              <option value="monochromatic">🌑 Monochromatic</option>
+              <option value="tetradic">🔷 Tetradic</option>
+              <option value="split-complementary">💫 Split-Complementary</option>
+            </select>
+          </div>
+          <button id="palette-generate-btn" class="btn btn-neon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            Generate (Space)
+          </button>
+          <button id="palette-matrix-btn" class="btn btn-glass" title="View contrast matrix of every palette color against every other">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+            Contrast Matrix
+          </button>
+          <button id="palette-ui-preview-toggle" class="btn btn-glass" title="Simulate palette in real UI components">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            UI Preview
+          </button>
+          <button id="palette-export-btn" class="btn btn-glass">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Export Palette
+          </button>
+        </div>
+      </div>
+
+      <!-- Variable Slot Palette Board -->
+      <div id="palette-container" class="palette-stage-board"></div>
+
+      <!-- UI System Simulator Drawer (Interactive Testing) -->
+      <div id="palette-ui-preview-drawer" class="palette-ui-drawer hidden theme-dark-preview">
+        <div class="drawer-header-bar">
+          <div>
+            <h3 class="drawer-title">Real-World UI Design System Preview</h3>
+            <p class="drawer-subtitle">Simulating your active palette across web components (Buttons, Cards, Badges, Links).</p>
+          </div>
+          <div class="drawer-mode-switches">
+            <button id="ui-preview-mode-dark" class="mode-switch-btn active">Dark Surface</button>
+            <button id="ui-preview-mode-light" class="mode-switch-btn">Light Surface</button>
+          </div>
+        </div>
+
+        <div class="simulated-app-canvas">
+          <nav class="sim-nav">
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <div id="ui-prev-logo" class="sim-logo">✦</div>
+              <span class="sim-brand">Acme Studio</span>
+            </div>
+            <div class="sim-nav-links">
+              <span id="ui-prev-link" class="sim-link">Features</span>
+              <span>Pricing</span>
+              <span>Docs</span>
+            </div>
+          </nav>
+          <div class="sim-hero">
+            <span id="ui-prev-badge" class="sim-badge">FEATURE LAUNCH</span>
+            <h2 class="sim-hero-title">Build faster with your custom color system</h2>
+            <p class="sim-hero-text">Your palette colors are mapped directly to primary actions, surface elevations, and semantic state borders.</p>
+            <div class="sim-cta-row">
+              <button id="ui-prev-btn" class="sim-primary-btn">Get Started Now</button>
+              <button class="sim-outline-btn">Documentation</button>
+            </div>
+          </div>
+          <div id="ui-prev-card" class="sim-card">
+            <h4 style="font-weight:700;margin-bottom:0.25rem;">Component Elevation Preview</h4>
+            <p style="font-size:0.85rem;opacity:0.85;">Cards and modals dynamically adopt your palette's secondary border color and ambient glow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 2: WCAG CONTRAST CHECKER
+         ========================================== -->
+    <section id="tool-contrast" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">ACCESSIBILITY ENGINE</span>
+          <h1 class="gradient-headline">WCAG 2.1 Contrast Inspector</h1>
+          <p class="section-subtitle">Validate foreground/background readability against legal WCAG AA & AAA standards with real-time UI previews.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <button id="contrast-sync-palette-btn" class="btn btn-magic" style="display:none;" title="Update the palette slot with this contrast-checked color">
+            🔄 Update Palette Slot
+          </button>
+          <button id="contrast-autofix-aa-btn" class="btn btn-magic" title="Shift lightness to meet WCAG AA (4.5:1)">
+            <span class="btn-sparkle">✨</span> Auto-Fix for AA (4.5:1)
+          </button>
+          <button id="contrast-autofix-aaa-btn" class="btn btn-neon" title="Shift lightness to meet WCAG AAA (7.0:1)">
+            ⭐ Auto-Fix for AAA (7.0:1)
+          </button>
+        </div>
+      </div>
+
+      <div class="contrast-studio-grid">
+        <!-- Left: Interactive Gauge & Pickers -->
+        <div class="glass-panel">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Color Tokens</h2>
+            <button id="contrast-swap-btn" class="swap-action-btn" title="Swap Foreground & Background">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+              <span>Swap</span>
+            </button>
+          </div>
+
+          <!-- Active Palette Quick-Pick Bar in Contrast Tool -->
+          <div class="contrast-palette-shelf" style="margin-bottom:1.25rem;">
+            <span class="shelf-label" style="font-size:0.68rem;letter-spacing:0.06em;">ACTIVE PALETTE QUICK-PICK (Click: Text, Shift+Click: Surface)</span>
+            <div id="contrast-palette-swatches" class="contrast-swatches-strip"></div>
+          </div>
+
+          <!-- Color Inputs -->
+          <div class="color-picker-cards">
+            <!-- Text Color -->
+            <div class="color-card-field">
+              <div class="field-meta">
+                <span class="field-label">Foreground Text</span>
+                <span class="field-tag">TEXT / ICONS</span>
+              </div>
+              <div class="color-picker-row">
+                <input type="color" id="contrast-fg-picker" class="native-color-disc" value="#1E293B">
+                <input type="text" id="contrast-fg-text" class="hex-text-input" value="#1E293B" maxlength="7">
+              </div>
+            </div>
+
+            <!-- Background Color -->
+            <div class="color-card-field">
+              <div class="field-meta">
+                <span class="field-label">Background Surface</span>
+                <span class="field-tag">CANVAS / CARD</span>
+              </div>
+              <div class="color-picker-row">
+                <input type="color" id="contrast-bg-picker" class="native-color-disc" value="#F8FAFC">
+                <input type="text" id="contrast-bg-text" class="hex-text-input" value="#F8FAFC" maxlength="7">
+              </div>
+            </div>
+          </div>
+
+          <!-- Futuristic Circular Score Gauge -->
+          <div class="circular-score-card">
+            <div class="gauge-ring-container">
+              <svg class="gauge-svg" width="130" height="130" viewBox="0 0 130 130">
+                <circle class="gauge-bg-circle" cx="65" cy="65" r="52" fill="none" stroke-width="9"/>
+                <circle id="gauge-progress-circle" class="gauge-bar" cx="65" cy="65" r="52" fill="none" stroke-width="9" stroke-linecap="round"/>
+              </svg>
+              <div class="gauge-inner-content">
+                <span id="contrast-ratio-score" class="gauge-score-digits">14.28 : 1</span>
+                <span class="gauge-label">RATIO</span>
+              </div>
+            </div>
+            <div id="contrast-ratio-summary" class="ratio-summary text-emerald-400">
+              Passes WCAG AAA for all content
+            </div>
+          </div>
+
+          <!-- Compliance Checklist -->
+          <div class="compliance-checklist">
+            <div class="checklist-row">
+              <div class="check-info">
+                <span class="check-title">WCAG AA Normal Text</span>
+                <span class="check-target">Minimum 4.5:1</span>
+              </div>
+              <span id="badge-aa-normal" class="status-badge pass">Pass</span>
+            </div>
+            <div class="checklist-row">
+              <div class="check-info">
+                <span class="check-title">WCAG AA Large Text (18pt+)</span>
+                <span class="check-target">Minimum 3.0:1</span>
+              </div>
+              <span id="badge-aa-large" class="status-badge pass">Pass</span>
+            </div>
+            <div class="checklist-row">
+              <div class="check-info">
+                <span class="check-title">WCAG AAA Normal Text</span>
+                <span class="check-target">Minimum 7.0:1</span>
+              </div>
+              <span id="badge-aaa-normal" class="status-badge pass">Pass</span>
+            </div>
+            <div class="checklist-row">
+              <div class="check-info">
+                <span class="check-title">WCAG AAA Large Text (18pt+)</span>
+                <span class="check-target">Minimum 4.5:1</span>
+              </div>
+              <span id="badge-aaa-large" class="status-badge pass">Pass</span>
+            </div>
+            <div class="checklist-row">
+              <div class="check-info">
+                <span class="check-title">UI Components & Boundaries</span>
+                <span class="check-target">Minimum 3.0:1</span>
+              </div>
+              <span id="badge-ui-components" class="status-badge pass">Pass</span>
+            </div>
+          </div>
+
+          <!-- Quick Curated Combos -->
+          <div class="presets-shelf">
+            <span class="shelf-label">QUICK PALETTE TESTERS</span>
+            <div class="chips-flex">
+              <button class="btn-chip contrast-preset-btn" data-fg="#0F172A" data-bg="#FFFFFF">Crisp White</button>
+              <button class="btn-chip contrast-preset-btn" data-fg="#F8FAFC" data-bg="#0B0F19">Onyx Night</button>
+              <button class="btn-chip contrast-preset-btn" data-fg="#4F46E5" data-bg="#EEF2FF">Electric Indigo</button>
+              <button class="btn-chip contrast-preset-btn" data-fg="#047857" data-bg="#ECFDF5">Emerald Forest</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Realistic App Simulator -->
+        <div class="glass-panel preview-stage-col">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Component Viewport</h2>
+            <span class="panel-hint">Live Rendering</span>
+          </div>
+
+          <div id="contrast-preview-box" class="contrast-stage-viewport">
+            <div class="simulated-browser-bar">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="browser-url-pill">design-system.preview</span>
+            </div>
+
+            <div class="simulated-page-content">
+              <div class="preview-hero-block">
+                <span class="hero-tag-pill">WCAG Certified</span>
+                <h3 id="preview-heading" class="simulated-headline">Crafting Accessible Digital Experiences</h3>
+                <p id="preview-body" class="simulated-body">
+                  High contrast creates readable interfaces for everyone. It prevents eye strain, reduces cognitive fatigue, and guarantees usability under intense outdoor lighting.
+                </p>
+              </div>
+
+              <div class="simulated-ui-row">
+                <button id="preview-btn" class="simulated-solid-btn">
+                  Primary Action
+                </button>
+                <button id="preview-outline-btn" class="simulated-outline-btn">
+                  Outline Secondary
+                </button>
+              </div>
+
+              <div id="preview-card" class="simulated-component-card">
+                <div class="card-icon-slot">✦</div>
+                <div>
+                  <strong>UI Component Boundary Standard</strong>
+                  <p>Non-text elements like card borders, inputs, and toggle switches require a 3:1 contrast ratio.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 3: SVG VIEWER & OPTIMIZER
+         ========================================== -->
+    <section id="tool-svg" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">VECTOR STUDIO</span>
+          <h1 class="gradient-headline">SVG Forge & Minifier</h1>
+          <p class="section-subtitle">Deep inspection, metadata stripping, high-res PNG generation, and instant Data URI encoding.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <input type="file" id="svg-file-input" accept=".svg,image/svg+xml" style="display:none">
+          <button id="svg-recolor-palette-btn" class="btn btn-magic" title="Recolor SVG vector fills and strokes with active palette tones">
+            🎨 Recolor with Palette
+          </button>
+          <button id="svg-optimize-btn" class="btn btn-neon">
+            ⚡ Clean & Optimize SVG
+          </button>
+          <button id="svg-copy-btn" class="btn btn-glass">
+            Copy SVG Code
+          </button>
+          <button id="svg-download-btn" class="btn btn-glass">
+            Download .SVG
+          </button>
+        </div>
+      </div>
+
+      <div class="svg-studio-grid">
+        <!-- Left: Interactive Canvas -->
+        <div class="glass-panel" style="padding:1.25rem;display:flex;flex-direction:column;gap:1.25rem;">
+          <div id="svg-preview-container" class="svg-preview-viewport bg-checker">
+            
+            <!-- Sleek Floating Canvas Toolbar -->
+            <div class="floating-glass-toolbar">
+              <div class="toolbar-btn-group">
+                <button id="svg-bg-checker" class="tool-icon-btn active" title="Checkerboard Transparent">▦</button>
+                <button id="svg-bg-light" class="tool-icon-btn" title="Light Mode">☀</button>
+                <button id="svg-bg-dark" class="tool-icon-btn" title="Dark Room">☾</button>
+              </div>
+              <div class="toolbar-separator"></div>
+              <div class="toolbar-btn-group">
+                <button id="svg-zoom-out" class="tool-icon-btn" title="Zoom Out">−</button>
+                <button id="svg-zoom-reset" class="tool-icon-btn" style="font-size:0.75rem;width:auto;padding:0 0.5rem;" title="Reset Zoom">100%</button>
+                <button id="svg-zoom-in" class="tool-icon-btn" title="Zoom In">+</button>
+              </div>
+            </div>
+
+            <div id="svg-preview-canvas" class="svg-canvas-wrapper"></div>
+          </div>
+
+          <!-- Quick Samples & Actions Row -->
+          <div class="svg-bottom-bar">
+            <div class="sample-chips-row">
+              <span class="chip-label">Sample SVGs:</span>
+              <button class="btn-chip svg-sample-btn" data-sample="rocket">🚀 Rocket</button>
+              <button class="btn-chip svg-sample-btn" data-sample="shield">🛡️ Shield</button>
+              <button class="btn-chip svg-sample-btn" data-sample="badge">🎯 Target</button>
+            </div>
+
+            <!-- PNG High-Res Export -->
+            <div class="png-export-group">
+              <select id="svg-png-scale" class="select-control-modern" style="padding:0.4rem 0.75rem;font-size:0.8rem;">
+                <option value="1">1x Standard</option>
+                <option value="2" selected>2x Retina HD</option>
+                <option value="4">4x Ultra 4K</option>
+              </select>
+              <button id="svg-export-png-btn" class="btn btn-neon" style="padding:0.45rem 0.9rem;font-size:0.8rem;">
+                Export PNG
+              </button>
+              <button id="svg-copy-datauri-btn" class="btn btn-glass" style="padding:0.45rem 0.9rem;font-size:0.8rem;">
+                Data URI
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Metrics & Code Studio -->
+        <div class="glass-panel">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Inspector & Source</h2>
+          </div>
+
+          <!-- Drag & drop zone -->
+          <div id="svg-drop-zone" class="drop-zone-modern">
+            <div class="drop-icon-aura">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <p class="drop-primary-text">Drop vector file or click to browse</p>
+            <span class="drop-subtext">Optimizes .svg files in real-time</span>
+          </div>
+
+          <!-- Metric Cards -->
+          <div class="metric-triplet">
+            <div class="metric-triplet-card">
+              <span class="metric-title">ORIGINAL</span>
+              <span id="svg-stat-orig-size" class="metric-figure">0 KB</span>
+            </div>
+            <div class="metric-triplet-card">
+              <span class="metric-title">CLEANED</span>
+              <span id="svg-stat-clean-size" class="metric-figure">0 KB</span>
+            </div>
+            <div class="metric-triplet-card highlight">
+              <span class="metric-title">SAVED</span>
+              <span id="svg-stat-savings" class="metric-figure text-emerald-400">0%</span>
+            </div>
+          </div>
+
+          <div class="svg-detail-tags">
+            <span>Dimensions: <strong id="svg-stat-dimensions">0 × 0</strong></span>
+            <span>DOM Nodes: <strong id="svg-stat-nodes">0</strong></span>
+          </div>
+
+          <textarea id="svg-code-input" class="code-editor-modern" placeholder="Paste raw <svg> markup here..." spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 4: IMAGE RESIZER & FORMAT CONVERTER
+         ========================================== -->
+    <section id="tool-image" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">MEDIA LAB</span>
+          <h1 class="gradient-headline">Image Resizer & Transcoder</h1>
+          <p class="section-subtitle">Private, in-memory Canvas processing. Scale, crop, adjust compression, and convert to WebP/JPG/PNG.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <input type="file" id="image-file-input" accept="image/*" style="display:none">
+          <button id="image-reset-btn" class="btn btn-glass">Reset Dimensions</button>
+          <button id="image-download-btn" class="btn btn-neon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Processed Image
+          </button>
+        </div>
+      </div>
+
+      <div class="image-studio-grid">
+        <!-- Left: Image Canvas Viewport -->
+        <div class="glass-panel image-viewport-panel">
+          <div id="image-drop-zone" class="drop-zone-modern has-image">
+            <div class="drop-icon-aura">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            </div>
+            <p class="drop-primary-text">Drag image here to replace or click to browse</p>
+            <span class="drop-subtext">PNG, JPG, WebP, GIF, AVIF supported</span>
+          </div>
+
+          <div id="image-preview-wrapper" class="canvas-display-frame">
+            <canvas id="image-preview-canvas" class="processed-image-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Right: Resize & Format Settings -->
+        <div class="glass-panel">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Output Controls</h2>
+          </div>
+
+          <!-- Dimension Inputs -->
+          <div class="dim-inputs-grid">
+            <div class="input-card">
+              <label class="input-card-label">Width (px)</label>
+              <input type="number" id="image-width-input" class="dim-number-input" min="1">
+            </div>
+            <div class="input-card">
+              <label class="input-card-label">Height (px)</label>
+              <input type="number" id="image-height-input" class="dim-number-input" min="1">
+            </div>
+          </div>
+
+          <!-- Maintain Aspect Ratio -->
+          <label class="checkbox-pill-label">
+            <input type="checkbox" id="image-lock-aspect" checked class="modern-checkbox">
+            <span class="checkbox-text">Lock Aspect Ratio Proportions</span>
+          </label>
+
+          <!-- Quick Scale Percentages -->
+          <div class="controls-section">
+            <span class="controls-section-label">QUICK SCALING</span>
+            <div class="chips-flex">
+              <button class="btn-chip percent-resize-btn" data-percent="25">25%</button>
+              <button class="btn-chip percent-resize-btn" data-percent="50">50%</button>
+              <button class="btn-chip percent-resize-btn" data-percent="75">75%</button>
+              <button class="btn-chip percent-resize-btn" data-percent="100">100%</button>
+              <button class="btn-chip percent-resize-btn" data-percent="200">200%</button>
+            </div>
+          </div>
+
+          <!-- Aspect Ratio Presets -->
+          <div class="controls-section">
+            <span class="controls-section-label">ASPECT RATIO TEMPLATES</span>
+            <div class="chips-flex">
+              <button class="btn-chip aspect-preset-btn" data-ratio="1:1">1:1 Square (Avatar)</button>
+              <button class="btn-chip aspect-preset-btn" data-ratio="16:9">16:9 YouTube / Hero</button>
+              <button class="btn-chip aspect-preset-btn" data-ratio="9:16">9:16 Story / Reel</button>
+              <button class="btn-chip aspect-preset-btn" data-ratio="4:3">4:3 Photo</button>
+              <button class="btn-chip aspect-preset-btn" data-ratio="3:2">3:2 DSLR</button>
+            </div>
+          </div>
+
+          <!-- Format Select -->
+          <div class="controls-section">
+            <span class="controls-section-label">TARGET FILE FORMAT</span>
+            <select id="image-format-select" class="select-control-modern" style="width:100%;">
+              <option value="image/png">PNG — Lossless & Transparent</option>
+              <option value="image/jpeg">JPEG — High Compression Photo</option>
+              <option value="image/webp">WebP — Modern Ultra-Compact</option>
+            </select>
+          </div>
+
+          <!-- Quality Slider -->
+          <div id="image-quality-group" class="controls-section" style="display:none;">
+            <div class="slider-label-row">
+              <span class="controls-section-label" style="margin-bottom:0;">COMPRESSION QUALITY</span>
+              <span id="image-quality-val" class="slider-val-badge">90%</span>
+            </div>
+            <input type="range" id="image-quality-slider" min="0.1" max="1.0" step="0.05" value="0.9" class="modern-range">
+          </div>
+
+          <!-- Telemetry Summary -->
+          <div class="telemetry-box">
+            <div class="telemetry-row">
+              <span>Original Size:</span>
+              <strong id="image-stat-orig-dim">-</strong>
+            </div>
+            <div class="telemetry-row">
+              <span>Original Weight:</span>
+              <strong id="image-stat-orig-size">-</strong>
+            </div>
+            <div class="telemetry-row">
+              <span>Target Dimensions:</span>
+              <strong id="image-stat-new-dim">-</strong>
+            </div>
+            <div class="telemetry-row highlight">
+              <span>Estimated Size:</span>
+              <strong id="image-stat-new-size" class="text-emerald-400">-</strong>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 5: CSS GRADIENT & GLASSMORPHISM
+         ========================================== -->
+    <section id="tool-gradient" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">CSS SHADER LAB</span>
+          <h1 class="gradient-headline">Gradients & Frosted Glass</h1>
+          <p class="section-subtitle">Compose high-definition multi-stop linear/radial/conic gradients and realistic iOS-style glassmorphism.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <button id="gradient-import-palette-btn" class="btn btn-magic" title="Convert active palette colors into gradient stops">
+            🎨 Load Active Palette
+          </button>
+          <button id="gradient-copy-css-btn" class="btn btn-neon">
+            Copy Gradient CSS
+          </button>
+          <button id="glass-copy-css-btn" class="btn btn-glass">
+            Copy Glass CSS
+          </button>
+        </div>
+      </div>
+
+      <div class="gradient-studio-grid">
+        <!-- Left: Interactive Visualizers -->
+        <div class="visualizer-col">
+          <!-- Gradient Showcase -->
+          <div class="glass-panel">
+            <div class="panel-header-row">
+              <h2 class="panel-title">Gradient Canvas</h2>
+            </div>
+            <div id="gradient-preview-box" class="gradient-stage-display">
+              <div class="stage-watermark">CSS Live Shader</div>
+            </div>
+
+            <!-- Presets -->
+            <div class="presets-shelf" style="margin-top:1rem;">
+              <span class="shelf-label">CURATED THEMES</span>
+              <div class="chips-flex">
+                <button class="btn-chip gradient-preset-btn" data-preset="aurora">Emerald Aurora</button>
+                <button class="btn-chip gradient-preset-btn" data-preset="sunset">Solar Sunset</button>
+                <button class="btn-chip gradient-preset-btn" data-preset="cyber">Cyberpunk Neon</button>
+                <button class="btn-chip gradient-preset-btn" data-preset="midnight">Midnight Onyx</button>
+                <button class="btn-chip gradient-preset-btn" data-preset="neon">Lime Wave</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glassmorphism Showcase with Floating Visual Orbs -->
+          <div class="glass-panel">
+            <div class="panel-header-row">
+              <h2 class="panel-title">Frosted Glass Refraction</h2>
+              <span class="panel-hint">Backdrop Filter</span>
+            </div>
+
+            <div class="glass-orb-stage">
+              <div class="floating-orb orb-a"></div>
+              <div class="floating-orb orb-b"></div>
+              <div class="floating-orb orb-c"></div>
+
+              <div id="glass-preview-card" class="glass-specimen-card">
+                <div class="specimen-badge">PRO INTERFACE</div>
+                <h3 class="specimen-title">Frosted Glass UI</h3>
+                <p class="specimen-desc">Realistic multi-layered optical blur with specular reflection highlights.</p>
+                <button class="specimen-btn">Interactive Glass Action</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Control Sliders -->
+        <div class="controls-col">
+          <!-- Gradient Settings -->
+          <div class="glass-panel">
+            <div class="panel-header-row">
+              <h2 class="panel-title">Gradient Parameters</h2>
+            </div>
+
+            <div class="gradient-type-row">
+              <div style="flex:1;">
+                <label class="input-card-label">Type</label>
+                <select id="gradient-type" class="select-control-modern" style="width:100%;">
+                  <option value="linear">Linear Gradient</option>
+                  <option value="radial">Radial Gradient</option>
+                  <option value="conic">Conic Shader</option>
+                </select>
+              </div>
+              <div id="gradient-angle-group" style="flex:1;">
+                <div class="slider-label-row">
+                  <span class="input-card-label">Angle</span>
+                  <span id="gradient-angle-val" class="slider-val-badge">135°</span>
+                </div>
+                <input type="range" id="gradient-angle" min="0" max="360" value="135" class="modern-range">
+              </div>
+            </div>
+
+            <!-- Color Stops -->
+            <div style="margin-top:1.25rem;">
+              <div class="panel-header-row" style="margin-bottom:0.75rem;">
+                <span class="controls-section-label" style="margin-bottom:0;">COLOR STOPS</span>
+                <button id="gradient-add-stop-btn" class="btn-chip" style="font-size:0.75rem;">+ Add Stop</button>
+              </div>
+              <div id="gradient-stops-list"></div>
+            </div>
+
+            <textarea id="gradient-css-output" class="code-editor-modern" style="height:70px;margin-top:1rem;" readonly></textarea>
+          </div>
+
+          <!-- Glassmorphism Settings -->
+          <div class="glass-panel">
+            <div class="panel-header-row">
+              <h2 class="panel-title">Glass Physics</h2>
+            </div>
+
+            <div class="controls-section">
+              <div class="slider-label-row">
+                <span class="controls-section-label">BACKDROP BLUR</span>
+                <span id="glass-blur-val" class="slider-val-badge">16px</span>
+              </div>
+              <input type="range" id="glass-blur-slider" min="0" max="40" value="16" class="modern-range">
+            </div>
+
+            <div class="controls-section">
+              <div class="slider-label-row">
+                <span class="controls-section-label">SURFACE OPACITY</span>
+                <span id="glass-opacity-val" class="slider-val-badge">25%</span>
+              </div>
+              <input type="range" id="glass-opacity-slider" min="5" max="85" value="25" class="modern-range">
+            </div>
+
+            <div class="controls-section">
+              <div class="slider-label-row">
+                <span class="controls-section-label">CORNER RADIUS</span>
+                <span id="glass-radius-val" class="slider-val-badge">16px</span>
+              </div>
+              <input type="range" id="glass-radius-slider" min="0" max="40" value="16" class="modern-range">
+            </div>
+
+            <textarea id="glass-css-output" class="code-editor-modern" style="height:100px;margin-top:0.75rem;" readonly></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 6: IMAGE PALETTE EXTRACTOR
+         ========================================== -->
+    <section id="tool-extractor" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">IMAGE INTELLIGENCE</span>
+          <h1 class="gradient-headline">Image Palette Extractor</h1>
+          <p class="section-subtitle">Drop any photo or UI screenshot to instantly sample and quantize its dominant aesthetic color palette.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <input type="file" id="extractor-file-input" accept="image/*" style="display:none">
+          <button id="extractor-apply-palette-btn" class="btn btn-magic" title="Load extracted colors directly into the Active Palette system">
+            🎨 Load into Active Palette
+          </button>
+        </div>
+      </div>
+
+      <div class="extractor-grid">
+        <!-- Left: Upload & Preview Stage -->
+        <div class="glass-panel" style="padding:1.5rem;display:flex;flex-direction:column;gap:1.25rem;">
+          <div id="extractor-drop-zone" class="media-drop-zone">
+            <svg class="drop-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="drop-main-text">Drag & Drop Image or Click to Browse</span>
+            <span class="drop-sub-text">PNG, JPG, WebP, SVG supported (processed 100% in-browser)</span>
+          </div>
+
+          <div class="extractor-preview-box">
+            <img id="extractor-preview-img" class="extractor-display-image" alt="Image preview">
+          </div>
+
+          <!-- Quick Samples -->
+          <div class="presets-shelf">
+            <span class="shelf-label">OR TRY CURATED SAMPLES</span>
+            <div class="chips-flex">
+              <button class="btn-chip extractor-sample-btn" data-sample="nature">🌲 Nature Horizon</button>
+              <button class="btn-chip extractor-sample-btn" data-sample="cyberpunk">⚡ Cyberpunk Neon</button>
+              <button class="btn-chip extractor-sample-btn" data-sample="sunset">🌅 Sunset Gradient</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Extracted Swatches & Settings -->
+        <div class="glass-panel" style="padding:1.5rem;display:flex;flex-direction:column;gap:1.25rem;">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Extracted Color Palette</h2>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <label style="font-size:0.75rem;font-weight:700;color:var(--text-dim);">Slots:</label>
+              <select id="extractor-color-count" class="select-control-modern" style="padding:0.25rem 0.6rem;font-size:0.78rem;">
+                <option value="5" selected>5 Colors</option>
+                <option value="6">6 Colors</option>
+                <option value="7">7 Colors</option>
+              </select>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem;color:var(--text-dim);line-height:1.5;">
+            Click any color block to copy its HEX value, or click <strong>Load into Active Palette</strong> to bridge these tones across the entire studio.
+          </p>
+
+          <div id="extractor-swatches-grid" class="extractor-swatches-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 7: SVG WAVE & SHAPE DIVIDER STUDIO
+         ========================================== -->
+    <section id="tool-wave" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">VECTOR SHAPES</span>
+          <h1 class="gradient-headline">SVG Wave & Divider Studio</h1>
+          <p class="section-subtitle">Compose smooth mathematical Bezier curves and multi-layered organic section dividers with zero dependencies.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <button id="wave-import-palette-btn" class="btn btn-magic" title="Colorize wave depth layers with the Active Palette">
+            🎨 Style with Palette
+          </button>
+          <button id="wave-randomize-btn" class="btn btn-glass" title="Generate new random seed curve">
+            🎲 Randomize Curve
+          </button>
+          <button id="wave-copy-svg-btn" class="btn btn-neon">
+            Copy SVG Code
+          </button>
+          <button id="wave-download-svg-btn" class="btn btn-glass">
+            Download .SVG
+          </button>
+        </div>
+      </div>
+
+      <div class="wave-studio-grid">
+        <!-- Visual Wave Preview Stage -->
+        <div class="glass-panel" style="padding:1.5rem;display:flex;flex-direction:column;gap:1.25rem;">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Wave Viewport</h2>
+            <span class="panel-hint">Live 1440x320 SVG</span>
+          </div>
+
+          <div id="wave-preview-box" class="wave-preview-stage"></div>
+
+          <div class="controls-section" style="margin-top:0.5rem;">
+            <span class="controls-section-label">SVG SOURCE CODE</span>
+            <textarea id="wave-code-output" class="code-editor-modern" style="height:120px;" readonly></textarea>
+          </div>
+        </div>
+
+        <!-- Controls Column -->
+        <div class="glass-panel" style="padding:1.5rem;">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Geometry Parameters</h2>
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">DEPTH LAYERS</span>
+              <span id="wave-layers-val" class="slider-val-badge">2</span>
+            </div>
+            <input type="range" id="wave-layers-slider" min="1" max="4" value="2" class="modern-range">
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">WAVE HEIGHT AMPLITUDE</span>
+              <span id="wave-height-val" class="slider-val-badge">160px</span>
+            </div>
+            <input type="range" id="wave-height-slider" min="60" max="280" value="160" class="modern-range">
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">CURVE COMPLEXITY (POINTS)</span>
+              <span id="wave-points-val" class="slider-val-badge">4</span>
+            </div>
+            <input type="range" id="wave-points-slider" min="2" max="8" value="4" class="modern-range">
+          </div>
+
+          <div class="controls-section" style="display:flex;gap:1.5rem;align-items:center;padding:0.75rem 0;">
+            <label class="modern-checkbox-label">
+              <input type="checkbox" id="wave-flip-h" class="modern-checkbox">
+              <span>Flip Horizontal</span>
+            </label>
+            <label class="modern-checkbox-label">
+              <input type="checkbox" id="wave-flip-v" class="modern-checkbox">
+              <span>Flip Vertical</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 8: SMOOTH MULTI-LAYERED SHADOW STUDIO
+         ========================================== -->
+    <section id="tool-shadow" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">PHYSICS SHADERS</span>
+          <h1 class="gradient-headline">Layered Shadows & Ambient Glow</h1>
+          <p class="section-subtitle">Craft natural, realistic multi-step light dispersion shadows and colored ambient blooms.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <button id="shadow-import-palette-btn" class="btn btn-magic" title="Match colored glow to Active Palette primary tone">
+            🎨 Match Palette Glow
+          </button>
+          <button id="shadow-copy-css-btn" class="btn btn-neon">
+            Copy CSS Shadow
+          </button>
+          <button id="shadow-copy-tailwind-btn" class="btn btn-glass">
+            Copy Tailwind Class
+          </button>
+        </div>
+      </div>
+
+      <div class="shadow-studio-grid">
+        <!-- Interactive Stage -->
+        <div class="glass-panel shadow-viewport-col">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Interactive Specimen</h2>
+            <span class="panel-hint">Multi-Layer Dispersion</span>
+          </div>
+
+          <div class="shadow-stage-display">
+            <div id="shadow-specimen-card" class="shadow-specimen-card">
+              <div class="specimen-badge">PRO CARD</div>
+              <h3 style="font-size:1.25rem;font-weight:800;margin:0.5rem 0 0.25rem;">Natural Depth</h3>
+              <p style="font-size:0.85rem;opacity:0.8;line-height:1.5;">Notice how multi-layered dispersion feels velvety and organic compared to default harsh shadows.</p>
+            </div>
+          </div>
+
+          <!-- Presets -->
+          <div class="presets-shelf" style="margin-top:1.25rem;">
+            <span class="shelf-label">ELEVATION PRESETS</span>
+            <div class="chips-flex">
+              <button class="btn-chip shadow-preset-btn" data-level="1">Level 1 (Subtle)</button>
+              <button class="btn-chip shadow-preset-btn" data-level="2">Level 2 (Card)</button>
+              <button class="btn-chip shadow-preset-btn" data-level="3">Level 3 (Hover)</button>
+              <button class="btn-chip shadow-preset-btn" data-level="4">Level 4 (Floating)</button>
+              <button class="btn-chip shadow-preset-btn" data-level="5">Level 5 (Modal)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls Column -->
+        <div class="glass-panel" style="padding:1.5rem;">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Light & Diffusion</h2>
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">ELEVATION DISTANCE</span>
+              <span id="shadow-elevation-val" class="slider-val-badge">Level 3</span>
+            </div>
+            <input type="range" id="shadow-elevation-slider" min="1" max="5" value="3" class="modern-range">
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">BLUR DISPERSION FACTOR</span>
+              <span id="shadow-blur-val" class="slider-val-badge">1.0x</span>
+            </div>
+            <input type="range" id="shadow-blur-slider" min="0.5" max="2.5" step="0.1" value="1.0" class="modern-range">
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">LIGHT ANGLE</span>
+              <span id="shadow-angle-val" class="slider-val-badge">45°</span>
+            </div>
+            <input type="range" id="shadow-angle-slider" min="0" max="180" value="45" class="modern-range">
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">BASE OPACITY</span>
+              <span id="shadow-opacity-val" class="slider-val-badge">15%</span>
+            </div>
+            <input type="range" id="shadow-opacity-slider" min="0.05" max="0.5" step="0.02" value="0.15" class="modern-range">
+          </div>
+
+          <div class="controls-section" style="padding-top:0.5rem;border-top:1px solid var(--border-glass);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+              <label class="modern-checkbox-label">
+                <input type="checkbox" id="shadow-glow-check" class="modern-checkbox" checked>
+                <span>Colored Ambient Bloom</span>
+              </label>
+              <input type="color" id="shadow-glow-picker" class="native-color-disc" value="#6366F1">
+            </div>
+          </div>
+
+          <textarea id="shadow-css-output" class="code-editor-modern" style="height:110px;margin-top:0.75rem;" readonly></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 9: CODE & TEXT BEAUTIFIER (RAY.SO STYLE)
+         ========================================== -->
+    <section id="tool-codecard" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">SOCIAL SHARE STUDIO</span>
+          <h1 class="gradient-headline">Code & Quote Beautifier</h1>
+          <p class="section-subtitle">Turn code snippets, developer tips, or quotes into stunning macOS-style screenshot cards.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <button id="codecard-import-palette-btn" class="btn btn-magic" title="Set gradient backdrop using the Active Palette">
+            🎨 Palette Backdrop
+          </button>
+          <select id="codecard-export-scale" class="select-control-modern" style="padding:0.4rem 0.8rem;font-size:0.82rem;">
+            <option value="2" selected>2x Retina HD</option>
+            <option value="4">4x Ultra 4K</option>
+          </select>
+          <button id="codecard-copy-png-btn" class="btn btn-glass">
+            Copy PNG
+          </button>
+          <button id="codecard-export-png-btn" class="btn btn-neon">
+            Download PNG
+          </button>
+        </div>
+      </div>
+
+      <div class="codecard-studio-grid">
+        <!-- Live Card Stage -->
+        <div class="glass-panel codecard-stage-container">
+          <div id="codecard-preview-stage" class="codecard-preview-stage">
+            <div id="codecard-window-frame" class="codecard-window theme-dark">
+              <div class="codecard-traffic-lights">
+                <span class="codecard-dot red"></span>
+                <span class="codecard-dot yellow"></span>
+                <span class="codecard-dot green"></span>
+                <span id="codecard-window-title" class="codecard-title">index.js</span>
+              </div>
+              <div id="codecard-code-display" class="codecard-body"></div>
+            </div>
+          </div>
+
+          <div class="presets-shelf" style="margin-top:1.25rem;">
+            <span class="shelf-label">BACKDROP GRADIENTS</span>
+            <div class="chips-flex">
+              <button class="btn-chip codecard-bg-preset" data-gradient="linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%)">Cyber Neon</button>
+              <button class="btn-chip codecard-bg-preset" data-gradient="linear-gradient(135deg, #10B981 0%, #3B82F6 100%)">Aurora Wave</button>
+              <button class="btn-chip codecard-bg-preset" data-gradient="linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)">Solar Flare</button>
+              <button class="btn-chip codecard-bg-preset" data-gradient="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)">Midnight Glass</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls Column -->
+        <div class="glass-panel" style="padding:1.5rem;">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Editor & Frame</h2>
+          </div>
+
+          <div class="controls-section">
+            <span class="controls-section-label">WINDOW TITLE</span>
+            <input type="text" id="codecard-title-input" class="hex-text-input" style="width:100%;" value="pixelcraft-engine.ts">
+          </div>
+
+          <div class="controls-section">
+            <span class="controls-section-label">CODE OR TEXT</span>
+            <textarea id="codecard-textarea" class="code-editor-modern" style="height:180px;"></textarea>
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">OUTER PADDING</span>
+              <span id="codecard-padding-val" class="slider-val-badge">40px</span>
+            </div>
+            <input type="range" id="codecard-padding-slider" min="16" max="72" value="40" class="modern-range">
+          </div>
+
+          <div style="display:flex;gap:1rem;margin-top:0.75rem;">
+            <div style="flex:1;">
+              <span class="controls-section-label">THEME</span>
+              <select id="codecard-theme-select" class="select-control-modern" style="width:100%;">
+                <option value="dark" selected>Obsidian Dark</option>
+                <option value="minimal">Minimal Pure</option>
+                <option value="light">Crisp Light</option>
+              </select>
+            </div>
+            <div style="display:flex;align-items:flex-end;padding-bottom:0.4rem;">
+              <label class="modern-checkbox-label">
+                <input type="checkbox" id="codecard-linenums-check" class="modern-checkbox" checked>
+                <span>Line Numbers</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TOOL 10: FAVICON & APP ICON PACK STUDIO
+         ========================================== -->
+    <section id="tool-favicon" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">APP ASSETS</span>
+          <h1 class="gradient-headline">Favicon & App Icon Studio</h1>
+          <p class="section-subtitle">Generate pixel-perfect multi-resolution icons for web, iOS, and Android with live browser mockup.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <input type="file" id="favicon-file-input" accept="image/*,.svg" style="display:none">
+          <button id="favicon-import-palette-btn" class="btn btn-magic" title="Fill background with Active Palette gradient">
+            🎨 Palette Background
+          </button>
+          <button id="favicon-copy-html-btn" class="btn btn-glass">
+            Copy HTML Tags
+          </button>
+          <button id="favicon-download-all-btn" class="btn btn-neon">
+            Download Icon Pack
+          </button>
+        </div>
+      </div>
+
+      <div class="favicon-studio-grid">
+        <!-- Visual Mockup Column -->
+        <div class="glass-panel" style="padding:1.5rem;display:flex;flex-direction:column;gap:1.5rem;">
+          <!-- Browser Tab Mockup -->
+          <div>
+            <span class="panel-hint" style="display:block;margin-bottom:0.5rem;">REAL-WORLD BROWSER TAB SIMULATION</span>
+            <div class="browser-tab-mockup">
+              <div class="tab-pill-mockup">
+                <img id="favicon-tab-mockup-icon" class="tab-icon-small" alt="Favicon">
+                <span class="tab-title-text">My Awesome Web App</span>
+                <span class="tab-close-x">&times;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Multi-Resolution Grid -->
+          <div>
+            <span class="panel-hint" style="display:block;margin-bottom:0.75rem;">MULTI-RESOLUTION ASSETS</span>
+            <div class="favicon-specs-row">
+              <div class="favicon-spec-box">
+                <img id="favicon-prev-16" class="spec-img-16" alt="16x16">
+                <span class="spec-label">16×16 px</span>
+                <span class="spec-sub">Browser tab</span>
+              </div>
+              <div class="favicon-spec-box">
+                <img id="favicon-prev-32" class="spec-img-32" alt="32x32">
+                <span class="spec-label">32×32 px</span>
+                <span class="spec-sub">Taskbar / Bookmarks</span>
+              </div>
+              <div class="favicon-spec-box">
+                <img id="favicon-prev-180" class="spec-img-180" alt="180x180">
+                <span class="spec-label">180×180 px</span>
+                <span class="spec-sub">Apple Touch Icon</span>
+              </div>
+              <div class="favicon-spec-box">
+                <img id="favicon-prev-512" class="spec-img-512" alt="512x512">
+                <span class="spec-label">512×512 px</span>
+                <span class="spec-sub">Android / PWA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls Column -->
+        <div class="glass-panel" style="padding:1.5rem;display:flex;flex-direction:column;gap:1.25rem;">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Icon Customization</h2>
+          </div>
+
+          <div id="favicon-drop-zone" class="media-drop-zone" style="padding:1.5rem 1rem;">
+            <svg class="drop-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span class="drop-main-text" style="font-size:0.9rem;">Upload Logo (PNG, SVG, JPG)</span>
+          </div>
+
+          <div class="controls-section">
+            <span class="controls-section-label">SHAPE MASK</span>
+            <select id="favicon-shape-select" class="select-control-modern" style="width:100%;">
+              <option value="rounded" selected>Rounded Squircle (iOS Style)</option>
+              <option value="circle">Full Circle (Modern Web)</option>
+              <option value="square">Standard Square</option>
+            </select>
+          </div>
+
+          <div class="controls-section">
+            <span class="controls-section-label">BACKGROUND FILL</span>
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+              <select id="favicon-bg-select" class="select-control-modern" style="flex:1;">
+                <option value="palette" selected>Active Palette Gradient</option>
+                <option value="transparent">Transparent (PNG)</option>
+                <option value="solid">Solid Color</option>
+              </select>
+              <input type="color" id="favicon-bg-picker" class="native-color-disc" value="#090D16" style="display:none;">
+            </div>
+          </div>
+
+          <div class="controls-section">
+            <div class="slider-label-row">
+              <span class="controls-section-label">ICON PADDING</span>
+              <span id="favicon-padding-val" class="slider-val-badge">15%</span>
+            </div>
+            <input type="range" id="favicon-padding-slider" min="0" max="35" value="15" class="modern-range">
+          </div>
+        </div>
+    <!-- ==========================================
+         TOOL 11: LIVE COMPONENT SANDBOX
+         ========================================== -->
+    <section id="tool-sandbox" class="tool-view hidden">
+      <div class="tool-hero-header">
+        <div>
+          <span class="section-tag">DESIGN SYSTEM PLAYGROUND</span>
+          <h1 class="gradient-headline">Live Component Sandbox</h1>
+          <p class="section-subtitle">Real-time design tokens rendered dynamically on live modern components. Everything changes with your active color palette in real time.</p>
+        </div>
+        <div class="tool-actions-cluster">
+          <div id="sandbox-active-swatches" class="sandbox-swatches-strip"></div>
+          <button id="sandbox-preview-theme-toggle" class="btn btn-glass" title="Toggle canvas contrast">Canvas: ☾ Dark Frame</button>
+          <button id="sandbox-copy-code-btn" class="btn btn-neon" title="Copy Component Code">Copy Component Code</button>
+        </div>
+      </div>
+
+      <div id="sandbox-preview-frame" class="sandbox-frame-container" data-frame-theme="dark">
+        <!-- Interactive UI Component Grid -->
+        <div class="sandbox-grid">
+          
+          <!-- Component Card 1: Buttons & States -->
+          <div class="sandbox-card">
+            <span class="card-caption">INTERACTIVE BUTTONS</span>
+            <div class="sandbox-btn-row">
+              <button class="sb-btn sb-btn-primary">Primary Action</button>
+              <button class="sb-btn sb-btn-accent">Accent Glow</button>
+              <button class="sb-btn sb-btn-outline">Outline Button</button>
+              <button class="sb-btn sb-btn-soft">Soft Pill</button>
+            </div>
+            <div class="sandbox-tag-row">
+              <span class="sb-tag tag-primary">● Active Live</span>
+              <span class="sb-tag tag-accent">★ Recommended</span>
+              <span class="sb-tag tag-muted">v4.5 PRO</span>
+            </div>
+          </div>
+
+          <!-- Component Card 2: Interactive SaaS Product / Pricing Card -->
+          <div class="sandbox-card saas-pricing-card">
+            <div class="pricing-card-header">
+              <span class="sb-tag tag-accent">ENTERPRISE CLOUD</span>
+              <span class="pricing-amount">$49<small>/mo</small></span>
+            </div>
+            <h3 class="pricing-title">Studio Production Suite</h3>
+            <p class="pricing-desc">Full access to 10 interconnected design engines with zero cloud telemetry.</p>
+            <ul class="pricing-features">
+              <li><span class="feature-bullet">✓</span> Realtime WCAG Contrast Engine</li>
+              <li><span class="feature-bullet">✓</span> SVG Vector Forge & Minifier</li>
+              <li><span class="feature-bullet">✓</span> Dynamic Multi-Layer Shadows</li>
+            </ul>
+            <button class="sb-btn sb-btn-gradient" style="width:100%;margin-top:1.25rem;">Unlock All Pro Tools</button>
+          </div>
+
+          <!-- Component Card 3: Dashboard Metric & Modern Inputs -->
+          <div class="sandbox-card">
+            <span class="card-caption">METRIC & FORM CONTROLS</span>
+            <div class="stat-highlight-box">
+              <span class="stat-label">TOTAL VECTOR ASSETS</span>
+              <div class="stat-number-row">
+                <span class="stat-value">148,920</span>
+                <span class="stat-badge-growth">+24.8% ↑</span>
+              </div>
+            </div>
+            <div class="sandbox-form-row">
+              <div class="modern-input-wrap">
+                <label class="modern-input-label">Project Workspace</label>
+                <input type="text" class="sb-input" value="PixelCraft Ultra Theme" placeholder="Project name...">
+              </div>
+              <div class="sb-toggle-row">
+                <span class="toggle-text">Enable GPU Glassmorphism</span>
+                <label class="sb-switch">
+                  <input type="checkbox" checked>
+                  <span class="sb-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+    </div><!-- .app-main-area -->
+  </div><!-- .app-layout -->
+
+  <!-- Google Sign-In & Authentication Modal -->
+  <dialog id="auth-modal" class="custom-modal-backdrop">
+    <div class="modal-card auth-modal-card" style="max-width:500px;width:95%;">
+      <div class="modal-header">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div class="auth-icon-halo">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="modal-title">Sign In with Google</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.15rem;">Unlock cloud sync, unlimited vault presets & pro design tokens</p>
+          </div>
+        </div>
+        <button id="auth-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+
+      <!-- Google GIS Official Button Target -->
+      <div id="google-gis-button-container" class="gis-button-wrapper"></div>
+
+      <!-- 1-Click Fast Google Sign-In -->
+      <div class="auth-action-box" style="margin-top:1rem;margin-bottom:1.25rem;">
+        <button id="auth-fast-google-btn" class="btn btn-neon auth-continue-btn" style="width:100%;padding:0.85rem;font-size:0.95rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path fill="#ffffff" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+            <path fill="#ffffff" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+            <path fill="#ffffff" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#ffffff" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <span>Continue with Google (Instant Sync)</span>
+        </button>
+      </div>
+
+      <!-- Collapsible OAuth Client ID Settings -->
+      <details class="oauth-config-details" style="background:var(--bg-input);padding:0.85rem;border-radius:12px;border:1px solid var(--border-glass);margin-bottom:1rem;">
+        <summary class="oauth-details-summary" style="font-size:0.82rem;font-weight:700;cursor:pointer;color:var(--text-dim);">Google Cloud OAuth Client ID (Optional Config)</summary>
+        <div class="oauth-details-body" style="margin-top:0.75rem;">
+          <label class="input-card-label" style="font-size:0.75rem;">OAuth 2.0 Web Client ID</label>
+          <input type="text" id="auth-client-id-input" class="sb-input" placeholder="e.g. 123456789-abcdef.apps.googleusercontent.com" style="font-size:0.85rem;">
+          <button id="auth-save-client-id-btn" class="btn btn-glass" style="margin-top:0.6rem;width:100%;font-size:0.85rem;padding:0.5rem;">Save Client ID & Initialize</button>
+        </div>
+      </details>
+
+      <div class="auth-features-list" style="display:flex;flex-direction:column;gap:0.4rem;font-size:0.78rem;color:var(--text-dim);">
+        <div>☁️ Auto-syncs palettes and presets across all your devices</div>
+        <div>🔒 100% Private & In-Browser Session</div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Presets & Favorites Vault Modal -->
+  <dialog id="library-vault-modal" class="custom-modal-backdrop">
+    <div class="modal-card" style="max-width:760px;width:95%;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">⭐ Studio Presets & Vault</h3>
+          <p style="font-size:0.82rem;color:var(--text-dim);margin-top:0.25rem;">Saved palettes, harmonic color combinations, and design tokens stored safely in local storage.</p>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <button id="vault-save-current-btn" class="btn btn-neon" style="padding:0.45rem 0.9rem;font-size:0.82rem;">+ Save Current Palette</button>
+          <button id="vault-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+        </div>
+      </div>
+      <div id="vault-items-list" class="vault-grid-list"></div>
+    </div>
+  </dialog>
+
+  <!-- Multi-Platform Design Tokens Hub Modal -->
+  <dialog id="tokens-hub-modal" class="custom-modal-backdrop">
+    <div class="modal-card" style="max-width:720px;width:95%;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">📦 All-in-One Design Tokens Exporter</h3>
+          <p style="font-size:0.82rem;color:var(--text-dim);margin-top:0.25rem;">Export your active palette, shadows, and design system to any modern platform.</p>
+        </div>
+        <button id="tokens-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label class="input-card-label">Target Framework / Tool</label>
+        <select id="tokens-format-select" class="select-control-modern" style="width:100%;">
+          <option value="tailwind" selected>Tailwind CSS (theme.extend.colors)</option>
+          <option value="figma">Figma Tokens / Style Dictionary JSON</option>
+          <option value="flutter">Flutter Dart ColorScheme</option>
+          <option value="react-native">React Native Theme Object</option>
+          <option value="css">CSS Custom Properties (:root)</option>
+        </select>
+      </div>
+
+      <textarea id="tokens-output-code" class="code-editor-modern" style="height:230px;margin-bottom:1.25rem;" readonly></textarea>
+
+      <div class="modal-actions-row">
+        <button id="tokens-download-btn" class="btn btn-glass">Download File</button>
+        <button id="tokens-copy-btn" class="btn btn-neon">Copy Tokens</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Export Modal for Palette -->
+  <dialog id="palette-export-modal" class="custom-modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Export Color Palette</h3>
+        <button id="palette-close-modal-btn" class="glass-icon-btn" style="width:30px;height:30px;">&times;</button>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label class="input-card-label">Format Preset</label>
+        <select id="palette-export-format" class="select-control-modern" style="width:100%;">
+          <option value="css">CSS Custom Properties (:root)</option>
+          <option value="tailwind">Tailwind Config (theme.colors)</option>
+          <option value="json">JSON Array of Objects</option>
+          <option value="svg">SVG Vector Swatch Strip</option>
+        </select>
+      </div>
+
+      <textarea id="palette-export-output" class="code-editor-modern" style="height:180px;margin-bottom:1.25rem;" readonly></textarea>
+
+      <div class="modal-actions-row">
+        <button id="palette-download-png-btn" class="btn btn-glass">Download Swatch PNG</button>
+        <button id="palette-copy-export-btn" class="btn btn-neon">Copy to Clipboard</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Interactive Tonal Shades Modal (10 Tailwind-style Ramps) -->
+  <dialog id="shades-ramp-modal" class="custom-modal-backdrop">
+    <div class="modal-card" style="max-width:680px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="shades-base-name">Tonal Scale Ramps</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.2rem;">Click any shade block to copy its HEX value to your clipboard.</p>
+        </div>
+        <button id="shades-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+      <div id="shades-ramp-grid" class="shades-grid-layout"></div>
+    </div>
+  </dialog>
+
+  <!-- Raycast / Linear Style Command Menu HUD (Ctrl+K) -->
+  <dialog id="command-menu-modal" class="custom-modal-backdrop">
+    <div class="command-dialog-card">
+      <div class="command-search-bar">
+        <svg class="command-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="command-menu-input" class="command-search-input" placeholder="Type a command or search tools..." autocomplete="off">
+        <kbd class="command-esc-tag">ESC</kbd>
+      </div>
+      <div id="command-menu-list" class="command-results-list"></div>
+      <div class="command-footer">
+        <span>Use <kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+        <span><kbd>↵</kbd> to execute</span>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Pairwise Contrast Matrix Modal -->
+  <dialog id="contrast-matrix-modal" class="custom-modal-backdrop">
+    <div class="modal-card" style="max-width:760px;width:95%;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Palette Contrast Matrix (WCAG 2.1)</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.2rem;">
+            Pairwise accessibility audit of all palette colors. Click any cell to test the combination in the Contrast Checker.
+          </p>
+        </div>
+        <button id="matrix-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+      <div id="contrast-matrix-table-wrap" class="contrast-matrix-scroll-wrap"></div>
+    </div>
+  </dialog>
+
+  <!-- Persistent Global Active Palette Dock -->
+  <aside id="global-palette-dock" class="global-palette-dock" aria-label="Active Palette Dock">
+    <div class="dock-inner">
+      <div class="dock-meta" title="Click color to copy, Shift+Click to test contrast">
+        <span class="dock-label">ACTIVE PALETTE</span>
+        <span class="dock-hint">Shift+Click = Test</span>
+      </div>
+      <div id="dock-swatches-wrap" class="dock-swatches-row"></div>
+      <button class="dock-nav-btn" onclick="window.location.hash='palette'" title="Jump to Palette Studio">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Global Animated Toast -->
+  <div id="global-toast" class="toast-notification"></div>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "PixelCraft PRO — Next-Gen Design Studio",
+  "short_name": "PixelCraft PRO",
+  "description": "Unified 10-in-1 privacy-first in-browser design, vector, and media engineering studio.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#05070c",
+  "theme_color": "#6366f1",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
