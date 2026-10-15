@@ -12,7 +12,10 @@ yarn-error.log*
 test_dom.js
 test_suite.mjs
 test_e2e_cdp.mjs
+test_live_vercel.mjs
 screenshot.png
+bin/
+*.zip
 
 # Environment & OS files
 .DS_Store
@@ -23,3 +26,5 @@ Thumbs.db
 .vercel/
 .idea/
 .vscode/
+
+.vercel
