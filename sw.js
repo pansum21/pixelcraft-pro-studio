@@ -3,7 +3,7 @@
  * Strategy: Network-First with Cache Fallback (Never traps user on stale UI)
  */
 
-const CACHE_NAME = 'pixelcraft-cache-v5.3-live';
+const CACHE_NAME = 'pixelcraft-cache-v5.4-live';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -16,6 +16,8 @@ const ASSETS_TO_CACHE = [
   './js/utils/soundEffects.js',
   './js/utils/libraryManager.js',
   './js/utils/authManager.js',
+  './js/utils/feedbackManager.js',
+  './js/utils/toolGuides.js',
   './js/tools/palette.js',
   './js/tools/contrast.js',
   './js/tools/extractor.js',

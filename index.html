@@ -31,7 +31,446 @@
   <div class="tech-grid-pattern"></div>
 
   <!-- Master Application Layout -->
-  <div class="app-layout">
+  
+  <!-- ==========================================
+       FRONT WINDOW: MODERN GLASSMORPHIC LANDING PAGE
+       ========================================== -->
+  <div id="landing-view" class="landing-view">
+    
+    <!-- Top Sticky Landing Navbar -->
+    <header class="landing-navbar">
+      <div class="landing-nav-container">
+        <a href="#home" class="landing-brand-link">
+          <div class="brand-icon-halo">
+            <div class="brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.28 1.28L3 12l5.8 1.9a2 2 0 0 1 1.28 1.28L12 21l1.9-5.8a2 2 0 0 1 1.28-1.28L21 12l-5.8-1.9a2 2 0 0 1-1.28-1.28z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="landing-brand-text">
+            <span class="landing-suite-title">PixelCraft Suite</span>
+            <span class="landing-status-badge"><span class="pulse-dot"></span>v5.3 PRO Live</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="landing-nav-links" aria-label="Landing Navigation">
+          <a href="#how-it-works" class="landing-nav-item">How It Works</a>
+          <a href="#tools-showcase" class="landing-nav-item">11 Pro Tools</a>
+          <a href="#beginner-guides" class="landing-nav-item">User Guides</a>
+          <a href="#feedback-section" class="landing-nav-item">Feedback</a>
+          <a href="#faq-section" class="landing-nav-item">FAQ</a>
+          <button id="landing-privacy-link-btn" class="landing-nav-item-btn">Privacy</button>
+        </nav>
+
+        <!-- Navbar Actions (Auth + Launch Studio) -->
+        <div class="landing-nav-actions">
+          <button id="landing-google-login-btn" class="landing-auth-btn" title="Sign In with Google Cloud Sync">
+            <svg class="google-g-icon" width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            <span class="landing-auth-text">Sign in</span>
+          </button>
+
+          <button id="landing-launch-studio-nav-btn" class="landing-cta-primary-pill" title="Open 11-Tool Interactive Workspace">
+            <span>Launch Studio</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="landing-hero-section" id="hero">
+      <div class="landing-hero-container">
+        
+        <div class="landing-pill-tag">
+          <span class="pill-sparkle">✨</span>
+          <span>100% In-Browser Privacy • Zero-Upload Architecture • Instant PWA</span>
+        </div>
+
+        <h1 class="landing-hero-title">
+          The Unified Web Design & Media Studio
+        </h1>
+
+        <p class="landing-hero-sub">
+          <strong>11 interconnected pro-grade tools</strong> running client-side with zero server latency. 
+          Audited WCAG contrast, algorithmic color harmonies, organic wave dividers, SVG vector forge, 
+          social code cards, and a live component sandbox — all synced in one cohesive ecosystem.
+        </p>
+
+        <!-- Main Call-to-Action Group -->
+        <div class="landing-hero-cta-group">
+          <button id="landing-hero-launch-btn" class="hero-btn-primary">
+            <span class="btn-icon-rocket">🚀</span>
+            <span>Launch Studio (All 11 Tools Free)</span>
+          </button>
+          
+          <button id="landing-hero-login-btn" class="hero-btn-glass">
+            <svg class="google-g-icon" width="18" height="18" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            <span>Sign in with Google (Cloud Sync)</span>
+          </button>
+        </div>
+
+        <!-- High-Impact Trust Metrics -->
+        <div class="landing-metrics-strip">
+          <div class="metric-item">
+            <span class="metric-num">11</span>
+            <span class="metric-label">Pro Creative Engines</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">Client-Side Privacy</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-num">0 ms</span>
+            <span class="metric-label">Server Upload Delay</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-num">24/7</span>
+            <span class="metric-label">Offline PWA Ready</span>
+          </div>
+        </div>
+
+        <!-- Live Interactive Mini-Palette Showcase in Hero -->
+        <div class="landing-interactive-hero-card">
+          <div class="interactive-card-header">
+            <div class="interactive-tag">
+              <span class="dot-live"></span>
+              <span>LIVE HARMONY PREVIEW</span>
+            </div>
+            <div class="interactive-actions">
+              <button id="hero-mini-generate-btn" class="mini-tool-btn" title="Generate New Harmonious Swatches">
+                <span>🎲 Randomize</span>
+              </button>
+              <button id="hero-mini-test-contrast-btn" class="mini-tool-btn" title="Check Contrast In Studio">
+                <span>⚡ Test in Studio</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="hero-mini-swatches" class="hero-mini-swatches-row">
+            <div class="mini-swatch" style="background:#6366F1;" data-hex="#6366F1">
+              <span class="mini-swatch-hex">#6366F1</span>
+              <span class="mini-swatch-tag">Indigo</span>
+            </div>
+            <div class="mini-swatch" style="background:#EC4899;" data-hex="#EC4899">
+              <span class="mini-swatch-hex">#EC4899</span>
+              <span class="mini-swatch-tag">Pink</span>
+            </div>
+            <div class="mini-swatch" style="background:#F59E0B;" data-hex="#F59E0B">
+              <span class="mini-swatch-hex">#F59E0B</span>
+              <span class="mini-swatch-tag">Amber</span>
+            </div>
+            <div class="mini-swatch" style="background:#10B981;" data-hex="#10B981">
+              <span class="mini-swatch-hex">#10B981</span>
+              <span class="mini-swatch-tag">Emerald</span>
+            </div>
+            <div class="mini-swatch" style="background:#3B82F6;" data-hex="#3B82F6">
+              <span class="mini-swatch-hex">#3B82F6</span>
+              <span class="mini-swatch-tag">Blue</span>
+            </div>
+          </div>
+          
+          <div class="interactive-card-footer">
+            <span class="footer-tip">💡 Tip: Colors crafted in Palette Studio automatically flow into Gradients, Contrast Inspector, and Component Sandbox!</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="landing-section" id="how-it-works">
+      <div class="landing-section-container">
+        
+        <div class="section-badge-header">
+          <span class="section-kicker">WORKFLOW ARCHITECTURE</span>
+          <h2 class="section-title">How PixelCraft Works: From Idea to Production</h2>
+          <p class="section-sub">A seamless 4-step pipeline designed so beginners and senior developers alike can craft accessible, breathtaking digital products in minutes.</p>
+        </div>
+
+        <div class="workflow-steps-grid">
+          
+          <div class="workflow-step-card">
+            <div class="step-number-bubble">01</div>
+            <div class="step-icon-wrap">🎨</div>
+            <h3 class="step-card-title">Craft or Extract Colors</h3>
+            <p class="step-card-desc">
+              Generate mathematical acoustic harmonies (Analogous, Triadic, Tetradic) or drag-and-drop any brand photograph to extract vibrant dominant palettes directly from image pixels.
+            </p>
+            <div class="step-highlight-tag">Palette Studio & Extractor</div>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="step-number-bubble">02</div>
+            <div class="step-icon-wrap">⚡</div>
+            <h3 class="step-card-title">Audit & Auto-Fix Contrast</h3>
+            <p class="step-card-desc">
+              Verify compliance against WCAG 2.1 AA/AAA and APCA contrast thresholds. If contrast fails, click <strong>1-Click Smart Auto-Fix</strong> to calculate the exact minimal luminance shift.
+            </p>
+            <div class="step-highlight-tag">WCAG Contrast Inspector</div>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="step-number-bubble">03</div>
+            <div class="step-icon-wrap">🌊</div>
+            <h3 class="step-card-title">Design Shapes & Depth</h3>
+            <p class="step-card-desc">
+              Build organic Bezier page dividers, layered multi-elevation ambient shadows, and frosted Glassmorphism shaders using active palette colors for rich optical immersion.
+            </p>
+            <div class="step-highlight-tag">Waves, Shadows & Gradients</div>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="step-number-bubble">04</div>
+            <div class="step-icon-wrap">📦</div>
+            <h3 class="step-card-title">Export Production Tokens</h3>
+            <p class="step-card-desc">
+              Export multi-platform design tokens (CSS variables, Tailwind v3/v4 config, W3C JSON), format social code cards, generate full PWA favicon packages, and test in the live Sandbox!
+            </p>
+            <div class="step-highlight-tag">Tokens Hub & Sandbox</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Comprehensive 11 Tools Showcase -->
+    <section class="landing-section" id="tools-showcase">
+      <div class="landing-section-container">
+        
+        <div class="section-badge-header">
+          <span class="section-kicker">COMPLETE SUITE CATALOG</span>
+          <h2 class="section-title">11 Interconnected Creative Tools</h2>
+          <p class="section-sub">Every tool is engineered with pure Vanilla JavaScript, zero heavy frameworks, and 100% in-browser processing for blazing-fast speed.</p>
+        </div>
+
+        <div class="tools-catalog-grid" id="landing-tools-grid">
+          <!-- Dynamically populated or rendered static cards -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AdSense Non-Intrusive Sponsored Space (Responsive) -->
+    <section class="landing-section adsense-section-wrap" aria-label="Sponsorship & Advertisement">
+      <div class="landing-section-container">
+        <div class="adsense-slot-card">
+          <div class="adsense-slot-badge">SPONSORED SPONSOR AD SPACE • GOOGLE ADSENSE READY</div>
+          <div class="adsense-content-box">
+            <div class="adsense-placeholder-inner">
+              <span class="ad-symbol">📢</span>
+              <span class="ad-text-main">Responsive Google AdSense Slot (728x90 Leaderboard / 320x100 Mobile)</span>
+              <span class="ad-text-sub">Compliant with Google AdSense Quality Policies & Zero-Layout Shift (CLS) Standards</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beginner Guidelines & FAQs Section -->
+    <section class="landing-section" id="beginner-guides">
+      <div class="landing-section-container">
+        
+        <div class="section-badge-header">
+          <span class="section-kicker">KNOWLEDGE BASE & GUIDELINES</span>
+          <h2 class="section-title">Beginner Guide: How to Master Every Tool</h2>
+          <p class="section-sub">Never get stuck. Everything you need to know from the basics to professional shortcuts.</p>
+        </div>
+
+        <div class="guides-accordion-wrap" id="guides-accordion-container">
+          <!-- Populated from TOOL_GUIDES -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interactive Community Feedback System -->
+    <section class="landing-section" id="feedback-section">
+      <div class="landing-section-container">
+        
+        <div class="section-badge-header">
+          <span class="section-kicker">USER FEEDBACK & COMMUNITY</span>
+          <h2 class="section-title">Help Us Improve PixelCraft Studio</h2>
+          <p class="section-sub">Share your suggestions, report issues, or request new features. We review and update the suite continuously!</p>
+        </div>
+
+        <div class="feedback-layout-grid">
+          
+          <!-- Feedback Input Form -->
+          <div class="feedback-form-card">
+            <h3 class="feedback-card-heading">Send Your Thoughts</h3>
+            <p class="feedback-card-sub">Your feedback is saved locally and instantly queued for cloud synchronization.</p>
+
+            <form id="landing-feedback-form" class="feedback-form-inner">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fb-name-input">Your Name</label>
+                  <input type="text" id="fb-name-input" class="feedback-input" placeholder="e.g., Sumit Pandey">
+                </div>
+                <div class="form-group">
+                  <label for="fb-email-input">Email Address (Optional)</label>
+                  <input type="email" id="fb-email-input" class="feedback-input" placeholder="you@domain.com">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fb-category-select">Feedback Category</label>
+                  <select id="fb-category-select" class="feedback-input feedback-select">
+                    <option value="General Feedback">🌟 General Feedback</option>
+                    <option value="Feature Request">💡 Feature Request</option>
+                    <option value="Bug Report">🐛 Bug Report</option>
+                    <option value="UI/UX Suggestion">🎨 UI/UX Suggestion</option>
+                    <option value="Praise">❤️ Praise</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Rating (1 - 5 Stars)</label>
+                  <div class="star-rating-selector" id="star-rating-picker" role="radiogroup" aria-label="Rating">
+                    <button type="button" class="star-btn active" data-rating="1">★</button>
+                    <button type="button" class="star-btn active" data-rating="2">★</button>
+                    <button type="button" class="star-btn active" data-rating="3">★</button>
+                    <button type="button" class="star-btn active" data-rating="4">★</button>
+                    <button type="button" class="star-btn active" data-rating="5">★</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fb-message-input">Your Feedback / Suggestions *</label>
+                <textarea id="fb-message-input" class="feedback-input feedback-textarea" rows="4" placeholder="Tell us what you liked, what can be improved, or what tool you want to see next..." required></textarea>
+              </div>
+
+              <button type="submit" id="fb-submit-btn" class="feedback-submit-btn">
+                <span>Submit Feedback ✨</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Live Community Reviews List -->
+          <div class="feedback-reviews-card">
+            <div class="reviews-header">
+              <h3 class="feedback-card-heading">Recent Community Feedback</h3>
+              <span class="reviews-count-badge" id="feedback-count-badge">2 Reviews</span>
+            </div>
+            
+            <div id="landing-feedback-list" class="feedback-stream-list">
+              <!-- Rendered from feedbackManager -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="landing-section" id="faq-section">
+      <div class="landing-section-container">
+        
+        <div class="section-badge-header">
+          <span class="section-kicker">FREQUENTLY ASKED QUESTIONS</span>
+          <h2 class="section-title">Answers to Common Questions</h2>
+          <p class="section-sub">Clear details on privacy, licensing, offline performance, and AdSense readiness.</p>
+        </div>
+
+        <div class="faq-grid">
+          
+          <div class="faq-item-card">
+            <h4 class="faq-question">Is PixelCraft Studio 100% free to use?</h4>
+            <p class="faq-answer">Yes! All 11 tools are completely free with zero subscription fees, watermarks, or artificial limits. You can generate unlimited palettes, SVGs, waves, and shadows.</p>
+          </div>
+
+          <div class="faq-item-card">
+            <h4 class="faq-question">Are my images or private code uploaded to a server?</h4>
+            <p class="faq-answer">Never. PixelCraft is built on a 100% client-side zero-upload architecture. Image resizing, palette extraction, and SVG forge happen directly in your browser's memory using HTML5 Canvas & Web Workers.</p>
+          </div>
+
+          <div class="faq-item-card">
+            <h4 class="faq-question">Does it work offline on mobile and desktop?</h4>
+            <p class="faq-answer">Yes! PixelCraft is a Progressive Web App (PWA). Once loaded, our Network-First Service Worker caches assets so you can design even without an active internet connection.</p>
+          </div>
+
+          <div class="faq-item-card">
+            <h4 class="faq-question">Can I use the exported palettes and code commercially?</h4>
+            <p class="faq-answer">Absolutely. All color palettes, design tokens (CSS/Tailwind/JSON), SVGs, waves, shadows, and favicons you generate are yours to use in personal and commercial client projects with zero royalties.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Landing Footer -->
+    <footer class="landing-footer">
+      <div class="landing-footer-container">
+        
+        <div class="footer-top-row">
+          <div class="footer-brand-col">
+            <div class="landing-brand-link">
+              <span class="landing-suite-title">PixelCraft Suite PRO</span>
+              <span class="landing-status-badge">v5.3 Live</span>
+            </div>
+            <p class="footer-brand-tagline">
+              Modern zero-setup web tools ecosystem for designers, frontend developers, and digital creators worldwide.
+            </p>
+          </div>
+
+          <div class="footer-links-col">
+            <span class="footer-links-title">Studio Tools</span>
+            <a href="#palette" class="footer-link studio-jump-link" data-tool="palette">01 Palette Studio</a>
+            <a href="#contrast" class="footer-link studio-jump-link" data-tool="contrast">02 Contrast Inspector</a>
+            <a href="#svg" class="footer-link studio-jump-link" data-tool="svg">04 SVG Forge</a>
+            <a href="#wave" class="footer-link studio-jump-link" data-tool="wave">05 Wave Generator</a>
+            <a href="#sandbox" class="footer-link studio-jump-link" data-tool="sandbox">11 Live Sandbox</a>
+          </div>
+
+          <div class="footer-links-col">
+            <span class="footer-links-title">Resources & Help</span>
+            <a href="#how-it-works" class="footer-link">How It Works</a>
+            <a href="#beginner-guides" class="footer-link">User Guidelines</a>
+            <a href="#feedback-section" class="footer-link">Feedback & Requests</a>
+            <a href="https://github.com/pansum21/pixelcraft-pro-studio" target="_blank" rel="noopener" class="footer-link">GitHub Source ↗</a>
+          </div>
+
+          <div class="footer-links-col">
+            <span class="footer-links-title">Legal & Trust</span>
+            <button id="footer-privacy-btn" class="footer-link-btn">Privacy Policy</button>
+            <button id="footer-terms-btn" class="footer-link-btn">Terms of Service</button>
+            <button id="footer-about-btn" class="footer-link-btn">About PixelCraft</button>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <span class="footer-copy">© 2026 PixelCraft Studio. Crafted with zero-dependency Vanilla Web Standards. All rights reserved.</span>
+          <div class="footer-bottom-pills">
+            <span class="privacy-pill">🔒 Zero-Data Collection</span>
+            <span class="privacy-pill">⚡ Powered by Client-Side Web API</span>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Master Studio Workspace Layout -->
+  <div id="studio-view" class="app-layout" style="display:none;">
 
     <!-- ==========================================
          LEFT VERTICAL SIDEBAR: TOOLS 01 - 10
@@ -142,6 +581,10 @@
       </div>
 
       <div class="sidebar-secondary-actions">
+        <button id="sidebar-home-btn" class="sidebar-action-pill-btn" title="Return to Front Page & Guides">
+          <span class="action-icon">🏠</span>
+          <span class="tab-label">Front Page</span>
+        </button>
         <button id="sidebar-vault-btn" class="sidebar-action-pill-btn" title="Saved Presets & Favorites Vault">
           <span class="action-icon">⭐</span>
           <span class="tab-label">Presets Vault</span>
@@ -225,6 +668,8 @@
 
               <!-- Quick Action Pills: Vault & Tokens -->
               <div class="header-quick-pills">
+                <button id="studio-back-home-btn" class="glass-pill-btn home-return-btn" title="Back to Front Page & Tool Guides">🏠 Front Page</button>
+                <button id="header-guide-btn" class="glass-pill-btn" title="Open Instructions for Active Tool">📖 Guide</button>
                 <button id="header-vault-btn" class="glass-pill-btn" title="Open Saved Favorites & Vault">⭐ Vault</button>
                 <button id="header-tokens-btn" class="glass-pill-btn" title="Export Multi-Platform Design Tokens">📦 Tokens</button>
               </div>
@@ -1720,5 +2165,107 @@
 
   <!-- Main ES Module Script -->
   <script type="module" src="js/app.js"></script>
+
+  <!-- Privacy Policy Modal (GDPR & Google AdSense Compliant) -->
+  <dialog id="privacy-policy-modal" class="custom-modal-backdrop">
+    <div class="modal-card legal-modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Privacy Policy</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.2rem;">Last Updated: October 2026 • Compliant with Google AdSense & GDPR Standards</p>
+        </div>
+        <button id="privacy-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <h4>1. Zero-Upload In-Browser Architecture</h4>
+        <p>PixelCraft Studio operates entirely inside your web browser. When you upload photos for color extraction, image resizing, SVG inspection, or favicon generation, <strong>no files are ever uploaded or transmitted to any external server</strong>. All image processing, canvas quantization, and vector calculations take place strictly in your device's local memory.</p>
+
+        <h4>2. LocalStorage & Cookies</h4>
+        <p>We use standard HTML5 LocalStorage strictly to store your preferences (Dark/Light theme choice, sound effects toggle, saved palette presets in the Vault, and user feedback). These values remain on your local machine and are never sold or shared.</p>
+
+        <h4>3. Google Identity Services (GIS) & Cloud Sync</h4>
+        <p>If you choose to use the "Sign In with Google" feature, authentication is handled directly by Google's secure Identity Services (GIS). We only read your basic public profile information (Display Name, Email, and Avatar) to personalize your workspace session and sync your saved design tokens across devices. We never request access to private Google Drive files or personal account settings.</p>
+
+        <h4>4. Third-Party Advertising (Google AdSense)</h4>
+        <p>This website may display advertisements powered by Google AdSense to support free server hosting. Third-party vendors, including Google, use cookies to serve ads based on prior visits to this or other websites. Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
+
+        <h4>5. Contact & Data Inquiries</h4>
+        <p>For any privacy questions or data deletion requests, you can contact the PixelCraft team through the in-app Feedback form or via our official GitHub repository.</p>
+      </div>
+      <div class="modal-actions-row">
+        <button id="privacy-modal-dismiss-btn" class="btn btn-neon">I Understand</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Terms of Service Modal -->
+  <dialog id="terms-modal" class="custom-modal-backdrop">
+    <div class="modal-card legal-modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Terms of Service</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.2rem;">Open Standard MIT License & Permitted Use</p>
+        </div>
+        <button id="terms-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <h4>1. Acceptance of Terms</h4>
+        <p>By accessing or using PixelCraft Studio, you agree to be bound by these Terms of Service. If you disagree with any part, you may simply close the application.</p>
+
+        <h4>2. Commercial & Personal Use</h4>
+        <p>All assets created with PixelCraft Studio — including generated color schemes, CSS box-shadows, SVG wave dividers, design tokens, and converted images — are <strong>100% free for commercial and personal client use</strong> with zero attribution required.</p>
+
+        <h4>3. Disclaimer of Warranties</h4>
+        <p>PixelCraft Studio is provided "as is", without warranty of any kind, express or implied. In no event shall the authors be liable for any claim or damages arising from the use of this software.</p>
+      </div>
+      <div class="modal-actions-row">
+        <button id="terms-modal-dismiss-btn" class="btn btn-neon">Accept Terms</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- About Us Modal -->
+  <dialog id="about-modal" class="custom-modal-backdrop">
+    <div class="modal-card legal-modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">About PixelCraft Studio</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.2rem;">The Zero-Setup Design Engine</p>
+        </div>
+        <button id="about-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <h4>Our Mission</h4>
+        <p>Modern web creators shouldn't have to open 10 different ad-riddled websites just to generate a palette, test WCAG contrast, resize an image, and create an SVG wave divider. PixelCraft Studio brings all 11 indispensable tools into one cohesive, ultra-fast, client-side glassmorphic workstation.</p>
+
+        <h4>Crafted with Modern Web Standards</h4>
+        <p>Zero heavy frameworks. Zero telemetry. 100% Vanilla HTML5, CSS3, and ES Modules for instant load times even on slow 3G mobile connections.</p>
+      </div>
+      <div class="modal-actions-row">
+        <button id="about-modal-dismiss-btn" class="btn btn-neon">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Interactive In-Studio Tool Guide Modal -->
+  <dialog id="tool-guide-modal" class="custom-modal-backdrop">
+    <div class="modal-card" style="max-width:680px;width:95%;">
+      <div class="modal-header">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span id="guide-modal-icon" style="font-size:1.8rem;">📖</span>
+          <div>
+            <h3 class="modal-title" id="guide-modal-title">Tool Guidelines</h3>
+            <p id="guide-modal-tagline" style="font-size:0.8rem;color:var(--neon-indigo);font-weight:700;margin-top:0.15rem;"></p>
+          </div>
+        </div>
+        <button id="guide-modal-close-btn" class="glass-icon-btn" style="width:32px;height:32px;">&times;</button>
+      </div>
+      <div class="guide-modal-body" id="guide-modal-content"></div>
+      <div class="modal-actions-row">
+        <button id="guide-modal-action-btn" class="btn btn-neon">Got it, Let's Design!</button>
+      </div>
+    </div>
+  </dialog>
+
 </body>
 </html>

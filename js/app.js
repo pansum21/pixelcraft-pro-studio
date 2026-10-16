@@ -19,6 +19,8 @@ import { initTokenExporterTool } from './tools/tokenExporter.js';
 import { soundManager } from './utils/soundEffects.js';
 import { LibraryManager } from './utils/libraryManager.js';
 import { authManager } from './utils/authManager.js';
+import { feedbackManager } from './utils/feedbackManager.js';
+import { TOOL_GUIDES } from './utils/toolGuides.js';
 
 // Toast Notification Manager
 let toastTimer = null;
@@ -419,7 +421,7 @@ function initAuthUI(switchToolFn) {
 // PWA Offline Engine & Desktop Install Prompt
 function initPWA() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js?v=5.3').then((reg) => {
+    navigator.serviceWorker.register('./sw.js?v=5.4').then((reg) => {
       console.log('[PixelCraft PWA] Service Worker registered successfully:', reg.scope);
       reg.update().catch(() => {});
       if (reg.waiting) {
@@ -825,12 +827,404 @@ function initCommandMenu(switchToolFn) {
 }
 
 // Navigation & Tab Switching
+
+// ==========================================
+// LANDING PAGE & GUIDELINES CONTROLLER
+// ==========================================
+function initLandingPage(switchToolFn) {
+  const landingView = document.getElementById('landing-view');
+  const studioView = document.getElementById('studio-view');
+  const globalDock = document.getElementById('global-palette-dock');
+
+  function showLanding(anchorId = '') {
+    if (landingView) landingView.style.display = 'flex';
+    if (studioView) studioView.style.display = 'none';
+    if (globalDock) globalDock.style.display = 'none';
+
+    if (anchorId && anchorId !== 'home') {
+      setTimeout(() => {
+        const el = document.getElementById(anchorId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 60);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function showStudio(toolId = 'palette') {
+    if (landingView) landingView.style.display = 'none';
+    if (studioView) studioView.style.display = 'flex';
+    if (globalDock) globalDock.style.display = 'block';
+    switchToolFn(toolId);
+  }
+
+  // Connect Launch Studio Buttons
+  const launchBtns = [
+    document.getElementById('landing-launch-studio-nav-btn'),
+    document.getElementById('landing-hero-launch-btn')
+  ];
+  launchBtns.forEach(btn => {
+    if (btn) btn.addEventListener('click', () => {
+      window.location.hash = '#palette';
+      showStudio('palette');
+      soundManager.playPop(520);
+    });
+  });
+
+  // Connect Home Return Buttons in Studio
+  const homeBtns = [
+    document.getElementById('studio-back-home-btn'),
+    document.getElementById('sidebar-home-btn')
+  ];
+  homeBtns.forEach(btn => {
+    if (btn) btn.addEventListener('click', () => {
+      window.location.hash = '#home';
+      showLanding();
+      soundManager.playClick();
+    });
+  });
+
+  // Connect Auth Buttons in Landing Navbar & Hero
+  const authModal = document.getElementById('auth-modal');
+  const landingLoginBtns = [
+    document.getElementById('landing-google-login-btn'),
+    document.getElementById('landing-hero-login-btn')
+  ];
+  landingLoginBtns.forEach(btn => {
+    if (btn) btn.addEventListener('click', () => {
+      if (authModal) {
+        authModal.showModal();
+        soundManager.playPop(520);
+        authManager.initGoogleGis();
+      }
+    });
+  });
+
+  // Render 11 Tools Catalog Grid
+  const toolsGrid = document.getElementById('landing-tools-grid');
+  if (toolsGrid) {
+    toolsGrid.innerHTML = '';
+    Object.values(TOOL_GUIDES).forEach(tool => {
+      const card = document.createElement('div');
+      card.className = 'catalog-tool-card';
+      card.innerHTML = `
+        <div class="catalog-card-header">
+          <div class="catalog-icon-wrap">
+            <span class="catalog-icon">${tool.icon}</span>
+            <span class="catalog-tool-seq">${tool.num}</span>
+          </div>
+          <span class="catalog-category-pill">${tool.category}</span>
+        </div>
+        <h3 class="catalog-tool-title">${tool.name}</h3>
+        <span class="catalog-tool-tagline">${tool.tagline}</span>
+        <p class="catalog-tool-desc">${tool.purpose}</p>
+        <div class="catalog-card-footer">
+          <button class="catalog-launch-btn" data-tool="${tool.id}">
+            <span>Launch Tool</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <button class="catalog-guide-link" data-guide="${tool.id}">📖 Quick Guide</button>
+        </div>
+      `;
+      card.querySelector('.catalog-launch-btn').addEventListener('click', () => {
+        window.location.hash = '#' + tool.id;
+        showStudio(tool.id);
+        soundManager.playPop(520);
+      });
+      card.querySelector('.catalog-guide-link').addEventListener('click', () => {
+        openToolGuideModal(tool.id);
+      });
+      toolsGrid.appendChild(card);
+    });
+  }
+
+  // Render Beginner Guidelines Accordion
+  const accordionContainer = document.getElementById('guides-accordion-container');
+  if (accordionContainer) {
+    accordionContainer.innerHTML = '';
+    Object.values(TOOL_GUIDES).forEach((tool, idx) => {
+      const item = document.createElement('div');
+      item.className = `guide-accordion-item ${idx === 0 ? 'open' : ''}`;
+      item.innerHTML = `
+        <div class="guide-accordion-header">
+          <div class="guide-header-left">
+            <span class="guide-seq-tag">${tool.num}</span>
+            <span style="font-size:1.3rem;">${tool.icon}</span>
+            <span class="guide-item-title">${tool.name}</span>
+          </div>
+          <span class="guide-chevron">▼</span>
+        </div>
+        <div class="guide-accordion-content">
+          <p style="font-size:0.92rem;color:var(--text-dim);margin-bottom:0.75rem;"><strong>Target Audience:</strong> ${tool.whoFor}</p>
+          <ul class="guide-step-list">
+            ${tool.steps.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="guide-protip-box">
+            <strong>💡 Pro Tip:</strong> ${tool.proTip}
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="catalog-launch-btn" data-tool="${tool.id}">Open ${tool.name} in Studio →</button>
+          </div>
+        </div>
+      `;
+      item.querySelector('.guide-accordion-header').addEventListener('click', () => {
+        item.classList.toggle('open');
+        soundManager.playClick();
+      });
+      item.querySelector('.catalog-launch-btn').addEventListener('click', () => {
+        window.location.hash = '#' + tool.id;
+        showStudio(tool.id);
+        soundManager.playPop(520);
+      });
+      accordionContainer.appendChild(item);
+    });
+  }
+
+  // Interactive Tool Guide Modal (Triggerable from Studio header or Landing cards)
+  const guideModal = document.getElementById('tool-guide-modal');
+  const guideCloseBtn = document.getElementById('guide-modal-close-btn');
+  const guideActionBtn = document.getElementById('guide-modal-action-btn');
+  let currentGuideToolId = 'palette';
+
+  function openToolGuideModal(toolId) {
+    const guide = TOOL_GUIDES[toolId] || TOOL_GUIDES['palette'];
+    currentGuideToolId = guide.id;
+    
+    const iconEl = document.getElementById('guide-modal-icon');
+    const titleEl = document.getElementById('guide-modal-title');
+    const tagEl = document.getElementById('guide-modal-tagline');
+    const contentEl = document.getElementById('guide-modal-content');
+
+    if (iconEl) iconEl.textContent = guide.icon;
+    if (titleEl) titleEl.textContent = `${guide.num} / ${guide.name}`;
+    if (tagEl) tagEl.textContent = guide.tagline;
+
+    if (contentEl) {
+      contentEl.innerHTML = `
+        <p style="font-size:0.95rem;color:var(--text-dim);line-height:1.6;margin-bottom:1rem;">${guide.purpose}</p>
+        <h4 style="font-size:0.85rem;font-weight:800;color:var(--text-main);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em;">Step-by-Step Instructions:</h4>
+        <ul class="guide-step-list">
+          ${guide.steps.map(s => `<li>${s}</li>`).join('')}
+        </ul>
+        <div class="guide-protip-box">
+          <strong>💡 Pro Tip:</strong> ${guide.proTip}
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem;border-radius:10px;background:rgba(255,255,255,0.04);font-size:0.82rem;color:var(--text-dim);">
+          <strong>Keyboard Shortcuts:</strong> ${guide.shortcuts.join(' • ')}
+        </div>
+      `;
+    }
+
+    if (guideModal) {
+      guideModal.showModal();
+      soundManager.playPop(540);
+    }
+  }
+
+  if (guideCloseBtn && guideModal) {
+    guideCloseBtn.addEventListener('click', () => {
+      guideModal.close();
+      soundManager.playClick();
+    });
+  }
+  if (guideActionBtn && guideModal) {
+    guideActionBtn.addEventListener('click', () => {
+      guideModal.close();
+      window.location.hash = '#' + currentGuideToolId;
+      showStudio(currentGuideToolId);
+    });
+  }
+
+  // Header Guide button in Studio
+  const headerGuideBtn = document.getElementById('header-guide-btn');
+  if (headerGuideBtn) {
+    headerGuideBtn.addEventListener('click', () => {
+      const activeHash = window.location.hash.replace('#', '') || 'palette';
+      openToolGuideModal(activeHash);
+    });
+  }
+
+  // Mini Interactive Palette in Hero
+  const miniGenerateBtn = document.getElementById('hero-mini-generate-btn');
+  const miniTestBtn = document.getElementById('hero-mini-test-contrast-btn');
+  const miniSwatchesRow = document.getElementById('hero-mini-swatches');
+
+  if (miniGenerateBtn && miniSwatchesRow) {
+    miniGenerateBtn.addEventListener('click', () => {
+      const randomColors = [
+        '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0').toUpperCase(),
+        '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0').toUpperCase(),
+        '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0').toUpperCase(),
+        '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0').toUpperCase(),
+        '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0').toUpperCase()
+      ];
+      miniSwatchesRow.innerHTML = '';
+      randomColors.forEach((hex, i) => {
+        const sw = document.createElement('div');
+        sw.className = 'mini-swatch';
+        sw.style.backgroundColor = hex;
+        sw.innerHTML = `<span class="mini-swatch-hex">${hex}</span><span class="mini-swatch-tag">Color ${i+1}</span>`;
+        sw.addEventListener('click', () => {
+          navigator.clipboard.writeText(hex);
+          showToast(`Copied ${hex} ✨`);
+          soundManager.playPop(620);
+        });
+        miniSwatchesRow.appendChild(sw);
+      });
+      soundManager.playPop(480);
+      showToast('Generated fresh hero harmony swatches! 🎲');
+    });
+  }
+
+  if (miniTestBtn) {
+    miniTestBtn.addEventListener('click', () => {
+      window.location.hash = '#contrast';
+      showStudio('contrast');
+      soundManager.playPop(520);
+    });
+  }
+
+  // Feedback Form and Live Reviews List
+  const feedbackForm = document.getElementById('landing-feedback-form');
+  const feedbackList = document.getElementById('landing-feedback-list');
+  const feedbackBadge = document.getElementById('feedback-count-badge');
+  const starPicker = document.getElementById('star-rating-picker');
+  let selectedRating = 5;
+
+  if (starPicker) {
+    const starBtns = starPicker.querySelectorAll('.star-btn');
+    starBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedRating = parseInt(btn.dataset.rating, 10);
+        starBtns.forEach(b => {
+          const r = parseInt(b.dataset.rating, 10);
+          b.classList.toggle('active', r <= selectedRating);
+        });
+        soundManager.playPop(400 + selectedRating * 40);
+      });
+    });
+  }
+
+  function renderFeedbacks(feedbacks) {
+    if (!feedbackList) return;
+    feedbackList.innerHTML = '';
+    if (feedbackBadge) feedbackBadge.textContent = `${feedbacks.length} Reviews`;
+
+    feedbacks.forEach(fb => {
+      const card = document.createElement('div');
+      card.className = 'review-item-card';
+      const starsStr = '★'.repeat(fb.rating) + '☆'.repeat(5 - fb.rating);
+      card.innerHTML = `
+        <div class="review-meta-row">
+          <span class="review-author">${fb.name}</span>
+          <span class="review-stars">${starsStr}</span>
+        </div>
+        <span class="review-tag">${fb.category}</span>
+        <p class="review-text">${fb.message}</p>
+        <span class="review-date">${fb.date}</span>
+      `;
+      feedbackList.appendChild(card);
+    });
+  }
+
+  feedbackManager.subscribe(renderFeedbacks);
+
+  // Pre-fill user name/email if signed in
+  authManager.subscribe(user => {
+    if (user) {
+      const nameInput = document.getElementById('fb-name-input');
+      const emailInput = document.getElementById('fb-email-input');
+      if (nameInput && !nameInput.value) nameInput.value = user.name || '';
+      if (emailInput && !emailInput.value) emailInput.value = user.email || '';
+    }
+  });
+
+  if (feedbackForm) {
+    feedbackForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('fb-name-input')?.value;
+      const email = document.getElementById('fb-email-input')?.value;
+      const category = document.getElementById('fb-category-select')?.value;
+      const message = document.getElementById('fb-message-input')?.value;
+
+      if (!message || !message.trim()) {
+        showToast('Please enter your feedback message.');
+        return;
+      }
+
+      feedbackManager.addFeedback({
+        name,
+        email,
+        category,
+        rating: selectedRating,
+        message
+      });
+
+      document.getElementById('fb-message-input').value = '';
+      soundManager.playPop(640);
+      showToast('Thank you! Your feedback has been submitted ❤️');
+    });
+  }
+
+  // Legal Modals Wiring
+  const privacyModal = document.getElementById('privacy-policy-modal');
+  const termsModal = document.getElementById('terms-modal');
+  const aboutModal = document.getElementById('about-modal');
+
+  const setupModal = (modal, openBtns, closeBtns) => {
+    if (!modal) return;
+    openBtns.forEach(b => {
+      if (b) b.addEventListener('click', () => { modal.showModal(); soundManager.playPop(520); });
+    });
+    closeBtns.forEach(b => {
+      if (b) b.addEventListener('click', () => { modal.close(); soundManager.playClick(); });
+    });
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+  };
+
+  setupModal(
+    privacyModal,
+    [document.getElementById('landing-privacy-link-btn'), document.getElementById('footer-privacy-btn')],
+    [document.getElementById('privacy-modal-close-btn'), document.getElementById('privacy-modal-dismiss-btn')]
+  );
+
+  setupModal(
+    termsModal,
+    [document.getElementById('footer-terms-btn')],
+    [document.getElementById('terms-modal-close-btn'), document.getElementById('terms-modal-dismiss-btn')]
+  );
+
+  setupModal(
+    aboutModal,
+    [document.getElementById('footer-about-btn')],
+    [document.getElementById('about-modal-close-btn'), document.getElementById('about-modal-dismiss-btn')]
+  );
+
+  return { showLanding, showStudio, openToolGuideModal };
+}
+
+
 function initNavigation() {
   const navButtons = document.querySelectorAll('.nav-tab-btn');
   const toolViews = document.querySelectorAll('.tool-view');
+  const landingNav = initLandingPage(switchTool);
+
+  const studioTools = new Set([
+    'palette', 'contrast', 'extractor', 'svg', 'wave', 'shadow',
+    'gradient', 'codecard', 'image', 'favicon', 'sandbox', 'studio'
+  ]);
 
   function switchTool(toolId) {
     let validTool = false;
+
+    // Ensure Studio view is visible and landing view is hidden
+    const landingView = document.getElementById('landing-view');
+    const studioView = document.getElementById('studio-view');
+    const globalDock = document.getElementById('global-palette-dock');
+
+    if (landingView) landingView.style.display = 'none';
+    if (studioView) studioView.style.display = 'flex';
+    if (globalDock) globalDock.style.display = 'block';
 
     toolViews.forEach(view => {
       if (view.id === `tool-${toolId}`) {
@@ -906,8 +1300,12 @@ function initNavigation() {
   });
 
   function handleHash() {
-    const hash = window.location.hash.replace('#', '') || 'palette';
-    switchTool(hash);
+    const rawHash = (window.location.hash || '').replace('#', '').trim();
+    if (studioTools.has(rawHash)) {
+      landingNav.showStudio(rawHash === 'studio' ? 'palette' : rawHash);
+    } else {
+      landingNav.showLanding(rawHash);
+    }
   }
 
   window.addEventListener('hashchange', handleHash);
@@ -940,6 +1338,7 @@ function initNavigation() {
 
   return switchTool;
 }
+
 
 function startApp() {
   initSpotlight();
