@@ -80,6 +80,42 @@ export function hslToRgb(h, s, l) {
   return { r, g, b };
 }
 
+/**
+ * Simulates color vision deficiencies (Color Blindness)
+ * Modes: 'normal', 'deuteranopia', 'protanopia', 'tritanopia', 'achromatopsia'
+ */
+export function simulateColorBlindness(hex, mode = 'normal') {
+  if (mode === 'normal') return hex;
+  const { r, g, b } = hexToRgb(hex);
+
+  let sr = r, sg = g, sb = b;
+
+  if (mode === 'deuteranopia') {
+    // Green-blind
+    sr = 0.625 * r + 0.375 * g;
+    sg = 0.700 * r + 0.300 * g;
+    sb = 0.300 * g + 0.700 * b;
+  } else if (mode === 'protanopia') {
+    // Red-blind
+    sr = 0.567 * r + 0.433 * g;
+    sg = 0.558 * r + 0.442 * g;
+    sb = 0.242 * g + 0.758 * b;
+  } else if (mode === 'tritanopia') {
+    // Blue-yellow blind
+    sr = 0.950 * r + 0.050 * g;
+    sg = 0.433 * g + 0.567 * b;
+    sb = 0.475 * g + 0.525 * b;
+  } else if (mode === 'achromatopsia') {
+    // Complete monochrome / grayscale
+    const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+    sr = gray;
+    sg = gray;
+    sb = gray;
+  }
+
+  return rgbToHex(sr, sg, sb);
+}
+
 export function hslToHex(h, s, l) {
   const { r, g, b } = hslToRgb(h, s, l);
   return rgbToHex(r, g, b);

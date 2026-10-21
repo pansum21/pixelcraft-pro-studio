@@ -16,6 +16,8 @@ import { initCodeCardTool } from './tools/codeCard.js';
 import { initFaviconTool } from './tools/faviconGenerator.js';
 import { initSandboxTool } from './tools/componentSandbox.js';
 import { initTokenExporterTool } from './tools/tokenExporter.js';
+import { initPixelArtTool } from './tools/pixelArt.js';
+import { initCommunityModal } from './utils/communityHub.js';
 import { soundManager } from './utils/soundEffects.js';
 import { LibraryManager } from './utils/libraryManager.js';
 import { authManager } from './utils/authManager.js';
@@ -1211,7 +1213,7 @@ function initNavigation() {
 
   const studioTools = new Set([
     'palette', 'contrast', 'extractor', 'svg', 'wave', 'shadow',
-    'gradient', 'codecard', 'image', 'favicon', 'sandbox', 'studio'
+    'gradient', 'codecard', 'image', 'favicon', 'sandbox', 'pixelart', 'studio'
   ]);
 
   function switchTool(toolId) {
@@ -1301,6 +1303,17 @@ function initNavigation() {
 
   function handleHash() {
     const rawHash = (window.location.hash || '').replace('#', '').trim();
+    if (rawHash.startsWith('palette=') || rawHash.startsWith('p=')) {
+      const hexString = rawHash.replace(/^(palette|p)=/, '');
+      const hexList = hexString.split(/[-_,]/).map(h => h.startsWith('#') ? h : `#${h}`).filter(h => /^#[0-9a-fA-F]{6}$/i.test(h));
+      if (hexList.length >= 3) {
+        const slots = hexList.map(hex => ({ hex: hex.toUpperCase(), locked: false }));
+        appState.setSlots(slots);
+        landingNav.showStudio('palette');
+        showToast(`Loaded ${slots.length} shared colors from URL! 🎨`);
+        return;
+      }
+    }
     if (studioTools.has(rawHash)) {
       landingNav.showStudio(rawHash === 'studio' ? 'palette' : rawHash);
     } else {
@@ -1373,6 +1386,8 @@ function startApp() {
   initSafely('Favicon Studio', initFaviconTool);
   initSafely('Component Sandbox', initSandboxTool);
   initSafely('Design Tokens Hub', initTokenExporterTool);
+  initSafely('Pixel Art Studio', initPixelArtTool);
+  initSafely('Community Showcase', (showToast) => initCommunityModal(switchTool, showToast));
 }
 
 if (document.readyState === 'loading') {

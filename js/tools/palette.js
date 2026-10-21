@@ -13,7 +13,8 @@ import {
   getIdealTextColor,
   getContrastRatio,
   getColorName,
-  generateShades
+  generateShades,
+  simulateColorBlindness
 } from '../utils/colorUtils.js';
 import { appState } from '../state.js';
 import { setContrastColors } from './contrast.js';
@@ -54,8 +55,11 @@ export function initPaletteTool(showToast) {
   // Add / Remove slot buttons
   const addSlotBtn = document.getElementById('palette-add-slot-btn');
   const removeSlotBtn = document.getElementById('palette-remove-slot-btn');
+  const shareBtn = document.getElementById('palette-share-btn');
+  const visionBtns = document.querySelectorAll('.vision-filter-btn');
 
   let slots = appState.getSlots();
+  let currentVisionMode = 'normal';
 
   function openShadesModal(baseHex) {
     if (!shadesModal || !shadesGrid) return;
@@ -183,17 +187,18 @@ export function initPaletteTool(showToast) {
     container.style.gridTemplateColumns = `repeat(${slots.length}, 1fr)`;
 
     slots.forEach((slot, index) => {
-      const textColor = getIdealTextColor(slot.hex);
+      const displayHex = simulateColorBlindness(slot.hex, currentVisionMode);
+      const textColor = getIdealTextColor(displayHex);
       const isWhiteIdeal = textColor === '#FFFFFF';
-      const contrastWithWhite = getContrastRatio(slot.hex, '#FFFFFF');
-      const contrastWithBlack = getContrastRatio(slot.hex, '#000000');
-      const rgb = hexToRgb(slot.hex);
+      const contrastWithWhite = getContrastRatio(displayHex, '#FFFFFF');
+      const contrastWithBlack = getContrastRatio(displayHex, '#000000');
+      const rgb = hexToRgb(displayHex);
       const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
       const name = getColorName(slot.hex);
 
       const card = document.createElement('div');
       card.className = 'palette-column group';
-      card.style.backgroundColor = slot.hex;
+      card.style.backgroundColor = displayHex;
       card.style.color = textColor;
 
       card.innerHTML = `
@@ -513,6 +518,32 @@ export function initPaletteTool(showToast) {
   }
 
   if (downloadPngBtn) downloadPngBtn.addEventListener('click', downloadPaletteAsPng);
+
+  // Vision deficiency filters
+  visionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      visionBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentVisionMode = btn.dataset.vision || 'normal';
+      renderPalette();
+      soundManager.playClick();
+      showToast(`Vision Mode: ${btn.textContent.trim()}`);
+    });
+  });
+
+  // 0-Database Smart URL Hash Share
+  if (shareBtn) {
+    shareBtn.addEventListener('click', () => {
+      const hexList = slots.map(s => s.hex.replace('#', '')).join('-');
+      const shareUrl = `${window.location.origin}${window.location.pathname}#palette=${hexList}`;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        showToast('Copied shareable palette link to clipboard! 🔗');
+        soundManager.playSuccess();
+      }).catch(() => {
+        prompt('Copy your shareable palette link:', shareUrl);
+      });
+    });
+  }
 
   // Initial render
   renderPalette();

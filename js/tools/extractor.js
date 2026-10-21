@@ -14,6 +14,7 @@ export function initExtractorTool(showToast) {
   const previewImg = document.getElementById('extractor-preview-img');
   const swatchesGrid = document.getElementById('extractor-swatches-grid');
   const applyPaletteBtn = document.getElementById('extractor-apply-palette-btn');
+  const exportCollageBtn = document.getElementById('extractor-export-collage-btn');
   const sampleBtns = document.querySelectorAll('.extractor-sample-btn');
   const colorCountSelect = document.getElementById('extractor-color-count');
 
@@ -193,6 +194,122 @@ export function initExtractorTool(showToast) {
         extractColorsFromImage(previewImg);
       }
     });
+  }
+
+  function exportSocialCollage() {
+    if (!previewImg || !previewImg.complete || extractedHexes.length === 0) {
+      showToast('Please load an image first');
+      return;
+    }
+
+    const cWidth = 1080;
+    const cHeight = 1350;
+    const canvas = document.createElement('canvas');
+    canvas.width = cWidth;
+    canvas.height = cHeight;
+    const ctx = canvas.getContext('2d');
+
+    // Background gradient
+    const bgGrad = ctx.createLinearGradient(0, 0, cWidth, cHeight);
+    bgGrad.addColorStop(0, '#0a0d14');
+    bgGrad.addColorStop(1, '#05070c');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, cWidth, cHeight);
+
+    // Header branding
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = 'bold 36px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('PixelCraft Studio', 60, 90);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('Color Palette Extraction • Moodboard Specimen', 60, 130);
+
+    // Frame the image in top 60% of canvas
+    const imgX = 60;
+    const imgY = 170;
+    const imgW = 960;
+    const imgH = 750;
+
+    // Draw rounded background clip for image
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(imgX, imgY, imgW, imgH, 24);
+    ctx.clip();
+    
+    // Draw image cover-fit
+    const aspect = previewImg.naturalWidth / previewImg.naturalHeight;
+    let sW, sH, sX, sY;
+    if (aspect > imgW / imgH) {
+      sH = previewImg.naturalHeight;
+      sW = sH * (imgW / imgH);
+      sX = (previewImg.naturalWidth - sW) / 2;
+      sY = 0;
+    } else {
+      sW = previewImg.naturalWidth;
+      sH = sW / (imgW / imgH);
+      sX = 0;
+      sY = (previewImg.naturalHeight - sH) / 2;
+    }
+    ctx.drawImage(previewImg, sX, sY, sW, sH, imgX, imgY, imgW, imgH);
+    ctx.restore();
+
+    // Border around image
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(imgX, imgY, imgW, imgH, 24);
+    ctx.stroke();
+
+    // Draw extracted palette swatches at the bottom
+    const swY = 960;
+    const swH = 260;
+    const swW = (imgW - (extractedHexes.length - 1) * 20) / extractedHexes.length;
+
+    extractedHexes.forEach((hex, i) => {
+      const curX = imgX + i * (swW + 20);
+
+      // Swatch pill
+      ctx.fillStyle = hex;
+      ctx.beginPath();
+      ctx.roundRect(curX, swY, swW, swH, 20);
+      ctx.fill();
+
+      // Border
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.roundRect(curX, swY, swW, swH, 20);
+      ctx.stroke();
+
+      // Text inside swatch
+      const textClr = getIdealTextColor(hex);
+      ctx.fillStyle = textClr;
+      ctx.font = 'bold 24px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(hex, curX + swW / 2, swY + swH - 45);
+
+      const colName = getColorName(hex);
+      ctx.font = '500 18px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(colName, curX + swW / 2, swY + swH - 18);
+    });
+
+    // Footer Watermark
+    ctx.fillStyle = '#64748b';
+    ctx.font = '500 18px "Plus Jakarta Sans", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('Crafted with pixelcraftprostudio.vercel.app', 60, 1290);
+
+    // Download PNG
+    const link = document.createElement('a');
+    link.download = `pixelcraft_palette_card_${Date.now()}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('Downloaded High-Res Social Palette Card (PNG)!');
+  }
+
+  if (exportCollageBtn) {
+    exportCollageBtn.addEventListener('click', exportSocialCollage);
   }
 
   if (applyPaletteBtn) {

@@ -255,5 +255,29 @@ export const TOOL_GUIDES = {
       'Responsive switcher: Test component at Mobile (375px), Tablet (768px), or Desktop (100%)'
     ],
     proTip: 'Use Sandbox to test your components against both dark and light modes before putting them in production.'
+  },
+
+  pixelart: {
+    id: 'pixelart',
+    num: '12',
+    name: '8-Bit Pixel Art Studio & Sprite Animator',
+    tagline: 'Retro Sprite Drawing & In-Browser Animation Engine',
+    icon: '👾',
+    category: 'Creative Illustration',
+    purpose: 'Design pixel-perfect 8-bit sprites, game assets, retro icons, and multi-frame animations with onion-skinning, all rendered 100% in-browser.',
+    whoFor: 'Game developers, digital illustrators, retro aesthetic fans, NFT and indie artists.',
+    steps: [
+      'Choose your grid resolution: 16x16 (classic NES/GameBoy), 24x24, 32x32, or 48x48.',
+      'Select a drawing tool: Pencil, Eraser, Flood Fill (Paint Bucket), Eyedropper, or Line Tool.',
+      'Turn on Symmetry Mode (Mirror Draw) to automatically craft perfectly symmetrical characters and game shields.',
+      'Draw multiple frames using the "Add Frame" button, adjust FPS (1-24 fps), and toggle Onion Skinning to view the previous frame faint ghost.',
+      'Export crisp pixel PNGs (up to 32x scaling with zero blur) or full horizontal Sprite Sheets ready for Unity, Godot, or web games.'
+    ],
+    shortcuts: [
+      'P: Pencil tool | E: Eraser | B: Paint bucket | I: Eyedropper',
+      'Ctrl+Z: Undo | Ctrl+Y: Redo',
+      'Spacebar in Animation: Play/Pause sprite preview'
+    ],
+    proTip: 'Colors crafted in your Palette Studio automatically populate your Pixel Art swatches so your artwork stays perfectly on-brand!'
   }
 };
